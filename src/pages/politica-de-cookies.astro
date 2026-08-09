@@ -3,28 +3,59 @@ import Layout from '../layouts/Layout.astro';
 import { site } from '../lib/site-config';
 
 const title = `Política de cookies | ${site.name}`;
-const description = "Información sobre el uso de cookies en la web del estudio de cejas.";
+const description = "Información sobre el uso de cookies en la web del estudio de cejas. Analítica sin cookies por defecto.";
+const updated = "Última actualización: agosto de 2026";
 ---
 
-<Layout title={title} description={description}>
-    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
-      <a href="/" class="nav-link">
-        &larr; Volver al inicio
-      </a>
-      <h1 class="section-title mt-6">Política de cookies</h1>
-      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
-        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
-        <p>
-          Esta primera versión de la web no utiliza cookies de analítica ni de publicidad. Si más adelante se incorporan
-          herramientas de medición, aquí se detallarán su finalidad, titularidad y duración, junto con un sistema de
-          consentimiento previo.
+<Layout title={title} description={description} path="/politica-de-cookies">
+  <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+    <a href="/" class="nav-link">&larr; Volver al inicio</a>
+    <p class="section-kicker mt-8">Cookies</p>
+    <h1 class="section-title mt-3">Política de cookies</h1>
+    <p class="mt-2 text-[0.78rem] uppercase tracking-[0.12em] text-muted-foreground">{updated}</p>
+
+    <div class="mt-10 space-y-7 text-[0.92rem] leading-relaxed text-muted-foreground">
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">1. Qué son las cookies</h2>
+        <p class="mt-3">
+          Las cookies son pequeños archivos que se guardan en tu dispositivo al visitar una web. Permiten recordar
+          preferencias y medir la audiencia.
         </p>
-        <ul class="space-y-1.5">
-          <li>Cookies técnicas: [PENDIENTE]</li>
-          <li>Cookies analíticas: [PENDIENTE]</li>
-          <li>Cookies publicitarias: [PENDIENTE]</li>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">2. Cookies que utiliza esta web</h2>
+        <ul class="mt-4 space-y-3">
+          <li>
+            <strong class="text-foreground">Cookies técnicas (esenciales):</strong> necesarias para el funcionamiento
+            básico del sitio. No se requiere consentimiento para su uso.
+          </li>
+          <li>
+            <strong class="text-foreground">Almacenamiento local de tema:</strong> guardamos en tu navegador tu
+            preferencia de tema claro u oscuro. No se usa para seguimiento.
+          </li>
+          <li>
+            <strong class="text-foreground">Analítica:</strong> si activáramos analítica, se haría con una
+            herramienta sin cookies (plausible.io) y sin recopilar datos personales identificables. Actualmente
+            esta web no utiliza cookies de analítica ni de publicidad.
+          </li>
         </ul>
-        <p>Para cualquier duda puedes escribir a {site.email}.</p>
-      </div>
-    </main>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">3. Cómo gestionarlas</h2>
+        <p class="mt-3">
+          Puedes bloquear o eliminar las cookies desde la configuración de tu navegador. Si lo haces, la web seguirá
+          funcionando con normalidad.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">4. Contacto</h2>
+        <p class="mt-3">
+          Para cualquier duda sobre esta política puedes escribir a {site.email}.
+        </p>
+      </section>
+    </div>
+  </main>
 </Layout>

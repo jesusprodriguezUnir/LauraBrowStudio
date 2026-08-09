@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+}
+
+const { title, description, date } = Astro.props;
+const formatted = date.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<article class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+  <a href="/blog" class="nav-link">&larr; Volver al blog</a>
+  <p class="section-kicker mt-8">Guía del estudio</p>
+  <h1 class="section-title mt-3">{title}</h1>
+  <p class="mt-3 text-[0.8rem] uppercase tracking-[0.12em] text-muted-foreground">{formatted}</p>
+  <p class="mt-6 text-[1rem] font-medium leading-relaxed text-foreground/90">{description}</p>
+  <hr class="my-8 border-border" />
+  <div class="prose-legal">
+    <slot />
+  </div>
+</article>

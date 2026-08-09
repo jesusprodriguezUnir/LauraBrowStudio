@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 type Props = {
-  beforeSrc: string;
-  afterSrc: string;
+  freshSrc: string;
+  healedSrc: string;
   beforeLabel?: string;
   afterLabel?: string;
   beforeAlt: string;
@@ -10,8 +10,8 @@ type Props = {
 };
 
 export function ComparisonSlider({
-  beforeSrc,
-  afterSrc,
+  freshSrc,
+  healedSrc,
   beforeLabel = "Antes",
   afterLabel = "Resultado",
   beforeAlt,
@@ -21,10 +21,11 @@ export function ComparisonSlider({
 
   return (
     <div className="image-frame aspect-[4/5]">
-      <img src={afterSrc} alt={afterAlt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+      <img src={healedSrc} alt={afterAlt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <img
-        src={beforeSrc}
-        alt={beforeAlt}
+        src={freshSrc}
+        alt=""
+        aria-hidden="true"
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ clipPath: `inset(0 ${100 - value}% 0 0)` }}
@@ -46,7 +47,7 @@ export function ComparisonSlider({
         max={98}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        aria-label="Comparar antes y después"
+        aria-label={`${beforeAlt} ${afterAlt} — desliza para comparar`}
         className="absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent"
       />
     </div>

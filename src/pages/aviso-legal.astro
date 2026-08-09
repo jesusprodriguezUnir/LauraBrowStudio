@@ -4,32 +4,66 @@ import { site } from '../lib/site-config';
 
 const title = `Aviso legal | ${site.name} — Microblading en ${site.city}`;
 const description = `Aviso legal del estudio de microblading y micropigmentación de cejas en ${site.city}.`;
+const updated = "Última actualización: agosto de 2026";
 ---
 
-<Layout title={title} description={description}>
-    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
-      <a href="/" class="nav-link">
-        &larr; Volver al inicio
-      </a>
-      <h1 class="section-title mt-6">Aviso legal</h1>
-      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
-        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
-        <p>
-          En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico
-          (LSSI-CE), en este apartado se publicarán los datos identificativos del titular del sitio web.
+<Layout title={title} description={description} path="/aviso-legal">
+  <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+    <a href="/" class="nav-link">&larr; Volver al inicio</a>
+    <p class="section-kicker mt-8">Información legal</p>
+    <h1 class="section-title mt-3">Aviso legal</h1>
+    <p class="mt-2 text-[0.78rem] uppercase tracking-[0.12em] text-muted-foreground">{updated}</p>
+
+    <div class="mt-10 space-y-7 text-[0.92rem] leading-relaxed text-muted-foreground">
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">1. Datos identificativos</h2>
+        <p class="mt-3">
+          En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio
+          Electrónico (LSSI-CE), se informa de que el titular de este sitio web es:
         </p>
-        <ul class="space-y-1.5">
-          <li>Titular: {site.name}</li>
-          <li>NIF: [NIF]</li>
-          <li>Domicilio: {site.address}</li>
-          <li>Teléfono: {site.phoneDisplay}</li>
-          <li>Email: {site.email}</li>
-          <li>Actividad: micropigmentación y diseño de cejas</li>
+        <ul class="mt-4 space-y-1.5 border-l-2 border-border pl-4">
+          <li><strong class="text-foreground">Titular:</strong> {site.legalName}</li>
+          <li><strong class="text-foreground">NIF:</strong> {site.nif}</li>
+          <li><strong class="text-foreground">Domicilio:</strong> {site.address}, {site.city} ({site.region})</li>
+          <li><strong class="text-foreground">Teléfono / WhatsApp:</strong> {site.phoneDisplay}</li>
+          <li><strong class="text-foreground">Email:</strong> {site.email}</li>
+          <li><strong class="text-foreground">Actividad:</strong> micropigmentación y diseño de cejas con cita previa</li>
         </ul>
-        <p>
-          Se completarán igualmente las condiciones de uso, la propiedad intelectual de los contenidos, la
-          responsabilidad sobre los enlaces y la legislación aplicable cuando dispongamos de los datos definitivos.
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">2. Objeto y condiciones de uso</h2>
+        <p class="mt-3">
+          Este sitio tiene carácter informativo y permite solicitar una valoración o reservar cita. El acceso y el
+          uso de la web atribuyen la condición de usuario e implican la aceptación de las presentes condiciones.
         </p>
-      </div>
-    </main>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">3. Propiedad intelectual</h2>
+        <p class="mt-3">
+          Los contenidos, diseño, logotipos e imágenes de este sitio pertenecen a {site.legalName} o a sus
+          legítimos titulares y están protegidos por la normativa de propiedad intelectual. Queda prohibida su
+          reproducción sin autorización expresa.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">4. Responsabilidad y enlaces</h2>
+        <p class="mt-3">
+          La información médica o estética publicada tiene carácter orientativo y no sustituye una valoración
+          profesional. Ante cualquier duda de salud se consultará previamente a un médico. La web no se hace
+          responsable del contenido de sitios externos a los que se enlace.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">5. Legislación aplicable</h2>
+        <p class="mt-3">
+          Estas condiciones se rigen por la legislación española. Las partes se someten, con renuncia a cualquier
+          otro fuero, a los juzgados y tribunales de {site.city}.
+        </p>
+      </section>
+    </div>
+  </main>
 </Layout>

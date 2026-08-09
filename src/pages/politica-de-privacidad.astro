@@ -3,33 +3,60 @@ import Layout from '../layouts/Layout.astro';
 import { site } from '../lib/site-config';
 
 const title = `Política de privacidad | ${site.name}`;
-const description = "Información sobre el tratamiento de datos personales del estudio de cejas.";
+const description = "Información sobre el tratamiento de datos personales del estudio de cejas en Palencia.";
+const updated = "Última actualización: agosto de 2026";
 ---
 
-<Layout title={title} description={description}>
-    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
-      <a href="/" class="nav-link">
-        &larr; Volver al inicio
-      </a>
-      <h1 class="section-title mt-6">Política de privacidad</h1>
-      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
-        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
-        <p>
-          Este apartado recogerá la información exigida por el Reglamento (UE) 2016/679 (RGPD) y la LOPDGDD sobre el
-          tratamiento de datos personales.
+<Layout title={title} description={description} path="/politica-de-privacidad">
+  <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+    <a href="/" class="nav-link">&larr; Volver al inicio</a>
+    <p class="section-kicker mt-8">Protección de datos</p>
+    <h1 class="section-title mt-3">Política de privacidad</h1>
+    <p class="mt-2 text-[0.78rem] uppercase tracking-[0.12em] text-muted-foreground">{updated}</p>
+
+    <div class="mt-10 space-y-7 text-[0.92rem] leading-relaxed text-muted-foreground">
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">1. Responsable del tratamiento</h2>
+        <p class="mt-3">
+          El responsable del tratamiento de los datos recogidos a través de este sitio es {site.legalName}
+          &mdash; {site.address}, {site.city}. Puedes contactar en {site.email}.
         </p>
-        <ul class="space-y-1.5">
-          <li>Responsable del tratamiento: {site.name} &mdash; {site.address}</li>
-          <li>Finalidad: atender consultas y solicitudes de valoración recibidas por WhatsApp, teléfono o email</li>
-          <li>Base jurídica: consentimiento de la persona interesada</li>
-          <li>Conservación: [PLAZO DE CONSERVACIÓN]</li>
-          <li>Destinatarios: [ENCARGADOS DE TRATAMIENTO]</li>
-          <li>Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad</li>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">2. Qué datos tratamos y con qué finalidad</h2>
+        <ul class="mt-4 space-y-2">
+          <li><strong class="text-foreground">Datos de contacto</strong> (nombre, teléfono, email): atender consultas y solicitudes de valoración o reserva.</li>
+          <li><strong class="text-foreground">Datos de la cita</strong> (técnica de interés, fecha preferida): organizar la agenda y preparar la sesión.</li>
         </ul>
-        <p>
-          Para ejercer tus derechos podrás escribir a {site.email}. Los datos concretos se completarán antes de la
-          publicación definitiva de la web.
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">3. Base jurídica</h2>
+        <p class="mt-3">
+          El tratamiento se basa en el consentimiento de la persona interesada (art. 6.1.a RGPD), que se presta al
+          enviar el formulario o escribir por WhatsApp y puede retirarse en cualquier momento.
         </p>
-      </div>
-    </main>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">4. Conservación y destinatarios</h2>
+        <p class="mt-3">
+          Los datos se conservarán mientras dure la relación con la clienta y, posteriormente, durante los plazos
+          legales de conservación de la documentación sanitaria. No se ceden datos a terceros salvo obligación
+          legal. Las herramientas utilizadas (hosting, servicio de formularios y WhatsApp) actúan como encargados
+          del tratamiento.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-foreground">5. Derechos</h2>
+        <p class="mt-3">
+          Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, oposición,
+          limitación y portabilidad escribiendo a {site.email}, acompañando una copia de tu documento de
+          identidad. También puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).
+        </p>
+      </section>
+    </div>
+  </main>
 </Layout>

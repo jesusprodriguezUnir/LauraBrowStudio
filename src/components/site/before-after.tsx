@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { X } from "lucide-react";
 import before1 from "@/assets/case-before-1.jpg?url";
 import design1 from "@/assets/case-design-1.jpg?url";
 import result1 from "@/assets/case-result-1.jpg?url";
 import before2 from "@/assets/case-before-2.jpg?url";
 import result2 from "@/assets/case-result-2.jpg?url";
-import healedFresh from "@/assets/healed-fresh.jpg?url";
 import healedHealed from "@/assets/healed-healed.jpg?url";
 import browResult from "@/assets/brow-result.jpg?url";
 import { ComparisonSlider } from "./comparison-slider";
@@ -27,37 +27,43 @@ const cases: Case[] = [
   { id: "04", technique: "Microblading", outcome: "Recuperación de forma", before: before2, design: design1, result: browResult },
 ];
 
-
 const tabs = [
   { key: "before", label: "Antes" },
   { key: "design", label: "Diseño" },
   { key: "result", label: "Resultado" },
 ] as const;
 
-function CaseCard({ item }: { item: Case }) {
-  const [tab, setTab] = useState<(typeof tabs)[number]["key"]>("result");
+type TabKey = (typeof tabs)[number]["key"];
+
+function CaseCard({
+  item,
+  onOpen,
+}: {
+  item: Case;
+  onOpen: (src: string, label: string) => void;
+}) {
+  const [tab, setTab] = useState<TabKey>("result");
   const src = item[tab];
+  const label = tabs.find((t) => t.key === tab)?.label;
 
   return (
     <article className="reveal">
-      <div className="image-frame aspect-[4/5]">
-        <img
-          key={src}
-          src={src}
-          alt={`Caso ${item.id} — ${tabs.find((t) => t.key === tab)?.label} · ${item.technique}`}
-          loading="lazy"
-          width={1024}
-          height={1280}
-          className="h-full w-full object-cover transition-opacity duration-500"
-        />
-      </div>
-      <div className="mt-3 flex flex-wrap gap-1.5">
+      <button
+        type="button"
+        onClick={() => onOpen(src, `${item.technique} — ${label}`)}
+        className="image-frame block aspect-[4/5] w-full cursor-zoom-in text-left"
+        aria-label={`Ampliar ${item.technique} · ${label} (caso ${item.id})`}
+      >
+        <img key={src} src={src} alt="" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover transition-opacity duration-500" />
+      </button>
+      <div role="tablist" aria-label={`Fases del caso ${item.id}`} className="mt-3 flex flex-wrap gap-1.5">
         {tabs.map((t) => (
           <button
             key={t.key}
             type="button"
+            role="tab"
+            aria-selected={tab === t.key}
             onClick={() => setTab(t.key)}
-            aria-pressed={tab === t.key}
             className={`rounded-full px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
               tab === t.key ? "bg-foreground text-background" : "border border-border text-muted-foreground"
             }`}
@@ -76,6 +82,8 @@ function CaseCard({ item }: { item: Case }) {
 }
 
 export function BeforeAfter() {
+  const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
+
   return (
     <section id="resultados" className="border-t border-border bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -89,8 +97,8 @@ export function BeforeAfter() {
 
         <div className="reveal mt-12 grid gap-8 md:grid-cols-[1fr_0.85fr] md:items-center">
           <ComparisonSlider
-            beforeSrc={before1}
-            afterSrc={result1}
+            freshSrc={before1}
+            healedSrc={result1}
             beforeAlt="Ceja antes del tratamiento de microblading"
             afterAlt="Ceja después del tratamiento de microblading"
           />
@@ -98,8 +106,8 @@ export function BeforeAfter() {
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-primary">Comparador</p>
             <h3 className="section-title mt-3 !text-[clamp(1.7rem,3.6vw,2.5rem)]">Desliza para ver el cambio</h3>
             <p className="mt-4 text-[0.9rem] leading-relaxed text-muted-foreground">
-              Arrastra sobre la imagen para comparar el punto de partida con el resultado. Todas las fotografías son
-              provisionales y se sustituirán por casos reales del estudio.
+              Arrastra sobre la imagen para comparar el punto de partida con el resultado. Las fotografías que
+              aparecen ahora son provisionales y se sustituirán por casos reales del estudio.
             </p>
             <WhatsappCta message={waMessages.general} variant="outline" className="mt-7">
               Consultar mi caso
@@ -109,10 +117,32 @@ export function BeforeAfter() {
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {cases.map((item) => (
-            <CaseCard key={item.id} item={item} />
+            <CaseCard key={item.id} item={item} onOpen={(src, label) => setLightbox({ src, label })} />
           ))}
         </div>
       </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-6 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.label}
+          onClick={() => setLightbox(null)}
+        >
+          <div className="relative max-h-[90vh] w-full max-w-2xl" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setLightbox(null)}
+              aria-label="Cerrar imagen ampliada"
+              className="absolute -top-11 right-0 grid h-9 w-9 place-items-center rounded-full bg-background text-foreground"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <img src={lightbox.src} alt={lightbox.label} className="h-full max-h-[85vh] w-full rounded-sm object-contain" />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

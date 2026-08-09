@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { site } from "../../lib/site-config";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = `Blog de microblading en Palencia | ${site.name}`;
+const description =
+  "Guías de microblading, cuidados de la cicatrización y diferencias entre técnicas, escritas por el estudio de cejas en Palencia.";
+---
+
+<Layout title={title} description={description} path="/blog">
+  <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+    <a href="/" class="nav-link">&larr; Volver al inicio</a>
+    <p class="section-kicker mt-8">Guías</p>
+    <h1 class="section-title mt-3">Blog del estudio</h1>
+    <p class="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">
+      Explicamos cómo funciona el microblading sin tecnicismos: qué esperar de la cicatrización, cómo elegir
+      técnica y todo lo que olvidamos preguntar antes de la cita.
+    </p>
+
+    <div class="mt-12 divide-y divide-border border-t border-border">
+      {posts.map((post) => (
+        <article class="reveal py-8">
+          <p class="text-[0.72rem] uppercase tracking-[0.14em] text-muted-foreground">
+            {post.data.pubDate.toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" })}
+          </p>
+          <h2 class="mt-2 font-display text-2xl tracking-tight">
+            <a href={`/blog/${post.id}`} class="text-foreground transition-colors hover:text-primary">
+              {post.data.title}
+            </a>
+          </h2>
+          <p class="mt-3 text-[0.9rem] leading-relaxed text-muted-foreground">{post.data.description}</p>
+          <a href={`/blog/${post.id}`} class="mt-4 inline-block text-[0.75rem] uppercase tracking-[0.12em] text-primary hover:text-foreground">
+            Leer artículo
+          </a>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>

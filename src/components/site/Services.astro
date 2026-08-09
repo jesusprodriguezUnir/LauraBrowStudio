@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import result1 from "../../assets/case-result-1.jpg";
+import result2 from "../../assets/case-result-2.jpg";
+import brow from "../../assets/brow-result.jpg";
+import { waMessages } from "../../lib/site-config";
+import WhatsappCta from "./WhatsappCta.astro";
+
+const techniques = [
+  {
+    id: "pelo-a-pelo",
+    name: "Microblading pelo a pelo",
+    image: result1,
+    duration: "2 h – 2 h 30",
+    effect: "12 – 18 meses",
+    ideal: "Piel normal o seca, con carencias puntuales",
+    description:
+      "Trazos manuales finísimos que imitan el vello uno a uno. El acabado más natural de todos: se percibe como tu propia ceja, solo que siempre definida.",
+  },
+  {
+    id: "microshading",
+    name: "Microshading · Powder brows",
+    image: result2,
+    duration: "2 h – 2 h 30",
+    effect: "18 – 24 meses",
+    ideal: "Piel grasa o madura, y acabados más marcados",
+    description:
+      "Sombreado suave que aporta densidad y un acabado tipo «polvo». Al no depender de trazos finos, dura más y se adapta mejor a pieles grasas.",
+  },
+  {
+    id: "mixta",
+    name: "Técnica mixta",
+    image: brow,
+    duration: "2 h – 3 h",
+    effect: "12 – 18 meses",
+    ideal: "Cejas muy despobladas o muy asimétricas",
+    description:
+      "Pelo a pelo en el arco y sombreado en el cuerpo: ganas densidad donde hace falta sin perder el trazo natural en el principio y la cola.",
+  },
+];
+---
+
+<section id="servicios" class="border-t border-border bg-secondary/40 py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="reveal max-w-2xl">
+      <p class="section-kicker">Servicios</p>
+      <h2 class="section-title mt-4">Una técnica para cada ceja</h2>
+      <p class="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
+        El microblading no es un único resultado: depende de tu piel, tu vello y lo que quieras. Estas son
+        las tres técnicas que trabajamos, siempre tras una valoración previa.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {techniques.map((t) => (
+        <article class="reveal flex flex-col bg-card p-5 md:p-6">
+          <div class="image-frame aspect-[16/11]">
+            <Image
+              src={t.image}
+              alt={`${t.name} — micropigmentación de cejas en Palencia`}
+              widths={[420, 640]}
+              sizes="(min-width: 768px) 29vw, 92vw"
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+          <div class="mt-6 flex flex-wrap gap-1.5">
+            <span class="rounded-full bg-primary/10 px-3 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-primary">
+              Sesión {t.duration}
+            </span>
+            <span class="rounded-full border border-border px-3 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground">
+              Efecto {t.effect}
+            </span>
+          </div>
+          <h3 class="mt-4 font-display text-2xl tracking-tight">{t.name}</h3>
+          <p class="mt-2 text-[0.78rem] font-medium uppercase tracking-[0.1em] text-muted-foreground">
+            Ideal para: {t.ideal}
+          </p>
+          <p class="mt-3 text-[0.88rem] leading-relaxed text-muted-foreground">{t.description}</p>
+          <p class="mt-4 border-t border-border pt-4 text-[0.8rem] text-muted-foreground">
+            Presupuesto tras valoración · {t.id === "pelo-a-pelo" ? "incluye retoque" : "retoque incluido"}
+          </p>
+          <div class="mt-auto pt-6">
+            <WhatsappCta message={waMessages.service(t.name)} size="sm" variant="outline" class="w-full">
+              Consultar esta técnica
+            </WhatsappCta>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="reveal mt-10 max-w-2xl text-[0.85rem] leading-relaxed text-muted-foreground">
+      Cada caso se valora en persona antes de fijar precio y técnica. Puedes empezar por el
+      <a href="#test" class="underline decoration-border underline-offset-4 hover:text-foreground"> test de orientación</a>
+      o escribirnos directamente con una foto.
+    </p>
+  </div>
+</section>

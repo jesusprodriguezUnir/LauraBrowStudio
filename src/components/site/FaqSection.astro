@@ -1,0 +1,41 @@
+---
+import { faqItems } from "../../lib/faq";
+---
+
+<section id="faq" class="border-t border-border py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[0.8fr_1.2fr] md:px-8">
+    <div class="reveal">
+      <p class="section-kicker">Preguntas frecuentes</p>
+      <h2 class="section-title mt-4">Todo lo que suelen preguntarnos</h2>
+      <p class="mt-5 max-w-sm text-[0.9rem] leading-relaxed text-muted-foreground">
+        Si te queda alguna duda, puedes preguntarla directamente por WhatsApp.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="divide-y divide-border rounded-sm border border-border bg-card">
+        {faqItems.map((item) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-display text-lg tracking-tight [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-4 w-4 shrink-0 text-primary transition-transform duration-300 group-open:rotate-45"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </summary>
+            <p class="px-6 pb-6 text-[0.88rem] leading-relaxed text-muted-foreground">
+              {item.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+const items = [
+  { icon: "pen", title: "Diseño personalizado", text: "Cada ceja se adapta a tu rostro, tu estilo y tu punto de partida." },
+  { icon: "ruler", title: "Técnica precisa", text: "Implantación controlada para un acabado limpio y natural." },
+  { icon: "sparkles", title: "Resultados naturales", text: "Efecto sutil que realza la mirada sin endurecer el rostro." },
+  { icon: "badge", title: "Especialización", text: "Estudio enfocado únicamente en microblading y diseño de cejas." },
+];
+
+const icons: Record<string, string> = {
+  pen: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+  ruler: '<path d="M21.3 8.7 15.3 2.7a1 1 0 0 0-1.4 0L3.7 12.9a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4 0L21.3 10a1 1 0 0 0 0-1.3Z"/><path d="m8 5 3 3m-5 5 3 3m-5 1 3 3"/>',
+  sparkles: '<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>',
+  badge: '<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/>',
+};
+---
+
+<section id="valores" class="border-t border-border bg-surface-muted py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="reveal max-w-xl">
+      <p class="section-kicker">Microblading</p>
+      <h2 class="section-title mt-3">Imperceptible</h2>
+      <p class="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">
+        Trabajamos cada tratamiento de forma completamente personalizada, respetando la estructura del rostro y la
+        calidad de la piel.
+      </p>
+    </div>
+    <ul class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map(({ icon, title, text }) => (
+        <li class="reveal">
+          <span class="grid h-11 w-11 place-items-center rounded-full border border-border bg-background">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary" aria-hidden="true" set:html={icons[icon] ?? ""} />
+          </span>
+          <h3 class="mt-4 text-[0.8rem] font-semibold uppercase tracking-[0.12em]">{title}</h3>
+          <p class="mt-2 text-[0.86rem] leading-relaxed text-muted-foreground">{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

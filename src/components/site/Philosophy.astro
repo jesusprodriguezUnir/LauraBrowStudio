@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import studioDetail from "../../assets/studio-detail.jpg";
+
+const factors = [
+  ["Facciones", "Proporciones y rasgos de tu rostro."],
+  ["Forma del rostro", "Cómo la ceja acompaña a tu mirada."],
+  ["Cejas actuales", "Punto de partida real, sin atajos."],
+  ["Densidad del pelo", "Zonas con vello y zonas vacías."],
+  ["Tipo de piel", "Determina cómo evoluciona el pigmento."],
+  ["Resultado deseado", "Lo natural no significa lo mismo para todas."],
+];
+---
+
+<section id="filosofia" class="border-t border-border py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[0.95fr_1.05fr] md:gap-16 md:px-8">
+    <div class="reveal">
+      <p class="section-kicker">Filosofía</p>
+      <h2 class="section-title mt-4">No todas las cejas necesitan la misma técnica.</h2>
+      <p class="mt-6 max-w-md font-display text-xl italic leading-snug text-muted-foreground">
+        «El objetivo no es crear unas cejas perfectas según un patrón. Es crear unas cejas que encajen contigo.»
+      </p>
+      <div class="image-frame mt-9 aspect-[4/3]">
+        <Image
+          src={studioDetail}
+          alt="Detalle del espacio de trabajo del estudio de cejas en Palencia"
+          widths={[420, 640, 900]}
+          sizes="(min-width: 768px) 40vw, 92vw"
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+
+    <ul class="grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
+      {factors.map(([title, text], i) => (
+        <li class="reveal bg-background p-6">
+          <span class="font-mono text-[0.62rem] tracking-[0.16em] text-primary">0{i + 1}</span>
+          <h3 class="mt-3 font-display text-xl tracking-tight">{title}</h3>
+          <p class="mt-2 text-[0.85rem] leading-relaxed text-muted-foreground">{text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

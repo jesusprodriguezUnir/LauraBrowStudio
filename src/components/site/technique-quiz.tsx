@@ -88,7 +88,7 @@ export function TechniqueQuiz() {
   };
 
   return (
-    <section className="border-t border-border py-20 md:py-28">
+    <section id="test" className="border-t border-border bg-surface-subtle py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-5 md:px-8">
         <div className="reveal text-center">
           <p className="section-kicker">Orientación</p>

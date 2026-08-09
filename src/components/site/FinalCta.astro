@@ -1,0 +1,33 @@
+---
+import { site, waMessages } from "../../lib/site-config";
+import WhatsappCta from "./WhatsappCta.astro";
+import { BookingForm } from "./booking-form";
+---
+
+<section id="contacto" class="border-t border-border bg-surface-brand py-24 md:py-32">
+  <div class="mx-auto grid max-w-6xl gap-14 px-5 md:grid-cols-[1fr_1fr] md:items-center md:px-8">
+    <div class="reveal">
+      <p class="eyebrow !text-on-brand"><span class="eyebrow-dot !bg-on-brand" aria-hidden="true"></span> Contacto</p>
+      <h2 class="display-xl mt-5 !text-on-brand">¿Hablamos de tus cejas?</h2>
+      <p class="mt-6 max-w-md text-[0.95rem] leading-relaxed !text-on-brand/80">
+        Cuéntanos qué buscas y te orientaremos sobre la técnica que mejor puede encajar contigo. También puedes
+        pedir cita directamente por WhatsApp.
+      </p>
+      <div class="mt-9 flex flex-col items-start gap-4">
+        <WhatsappCta message={waMessages.general} size="lg" class="!bg-on-brand !text-surface-brand hover:!bg-background hover:!text-foreground">
+          Hablar por WhatsApp
+        </WhatsappCta>
+        <p class="text-[0.72rem] uppercase tracking-[0.2em] !text-on-brand/70">
+          {site.city} · {site.country} · Cita previa
+        </p>
+        <p class="text-[0.85rem] !text-on-brand/80">
+          {site.phoneDisplay} · {site.email}
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <BookingForm client:visible />
+    </div>
+  </div>
+</section>

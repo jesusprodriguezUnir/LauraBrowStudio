@@ -1,0 +1,33 @@
+---
+const steps = [
+  ["01", "Valoración", "Conocemos tus cejas, tu piel y tus objetivos."],
+  ["02", "Diseño", "Diseñamos la forma a mano alzada y la apruebas antes de empezar."],
+  ["03", "Elección de técnica", "Seleccionamos la técnica más adecuada para tu caso."],
+  ["04", "Tratamiento", "Realizamos el procedimiento siguiendo el diseño acordado."],
+  ["05", "Cicatrización", "Te explicamos todos los cuidados posteriores y te acompañamos."],
+  ["06", "Seguimiento", "Revisamos la evolución y, cuando corresponde, se realiza el retoque."],
+];
+---
+
+<section id="proceso" class="border-t border-border py-20 md:py-28">
+  <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[0.8fr_1.2fr] md:px-8">
+    <div class="reveal">
+      <p class="section-kicker">Proceso</p>
+      <h2 class="section-title mt-4">Cómo trabajamos</h2>
+      <p class="mt-5 max-w-sm text-[0.9rem] leading-relaxed text-muted-foreground">
+        Un proceso ordenado, explicado paso a paso, para que sepas en todo momento qué va a ocurrir.
+      </p>
+    </div>
+    <ol class="relative">
+      {steps.map(([num, title, text]) => (
+        <li class="reveal grid grid-cols-[auto_minmax(0,1fr)] gap-5 border-t border-border py-6 last:border-b">
+          <span class="font-mono text-[0.7rem] tracking-[0.16em] text-primary">{num}</span>
+          <div class="min-w-0">
+            <h3 class="font-display text-2xl tracking-tight">{title}</h3>
+            <p class="mt-2 text-[0.88rem] leading-relaxed text-muted-foreground">{text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

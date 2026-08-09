@@ -1,38 +1,51 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { site } from '../lib/site-config';
-import { SiteHeader } from '../components/site/site-header';
-import { Hero } from '../components/site/hero';
-import { MicrobladingInfo } from '../components/site/microblading-info';
-import { BeforeAfter } from '../components/site/before-after';
-import { Services } from '../components/site/services';
-import { Aftercare } from '../components/site/aftercare';
-import { About } from '../components/site/about';
-import { FaqSection } from '../components/site/faq-section';
-import { Reviews } from '../components/site/reviews';
-import { FinalCta } from '../components/site/final-cta';
-import { SiteFooter } from '../components/site/site-footer';
-import { WhatsappBar } from '../components/site/whatsapp-bar';
+import Layout from "../layouts/Layout.astro";
+import { site } from "../lib/site-config";
+import { SiteHeader } from "../components/site/site-header";
+import Hero from "../components/site/Hero.astro";
+import MicrobladingInfo from "../components/site/MicrobladingInfo.astro";
+import { TechniqueQuiz } from "../components/site/technique-quiz";
+import Services from "../components/site/Services.astro";
+import Process from "../components/site/Process.astro";
+import { BeforeAfter } from "../components/site/before-after";
+import HealedResults from "../components/site/HealedResults.astro";
+import Values from "../components/site/Values.astro";
+import Philosophy from "../components/site/Philosophy.astro";
+import About from "../components/site/About.astro";
+import Aftercare from "../components/site/Aftercare.astro";
+import LocalSeo from "../components/site/LocalSeo.astro";
+import FaqSection from "../components/site/FaqSection.astro";
+import Reviews from "../components/site/Reviews.astro";
+import FinalCta from "../components/site/FinalCta.astro";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
 
 const title = `Microblading en Palencia | ${site.name}`;
-const description = "Microblading pelo a pelo en Palencia. Resultado natural, diseñado según tus facciones. Especialistas en micropigmentación de cejas. Solicita tu valoración.";
+const description =
+  "Microblading pelo a pelo en Palencia. Resultado natural, diseñado según tus facciones. Especialistas en micropigmentación de cejas. Solicita tu valoración.";
 ---
 
-<Layout title={title} description={description}>
-    <div class="min-h-screen">
-      <SiteHeader client:load />
-      <main>
-        <Hero client:load />
-        <MicrobladingInfo client:load />
-        <BeforeAfter client:load />
-        <Services client:load />
-        <Aftercare client:load />
-        <About client:load />
-        <FaqSection client:load />
-        <Reviews client:load />
-        <FinalCta client:load />
-      </main>
-      <SiteFooter client:load />
-      <WhatsappBar client:load />
-    </div>
+<Layout title={title} description={description} includeFaq>
+  <div class="min-h-screen" id="contenido">
+    <SiteHeader client:load />
+    <main>
+      <Hero />
+      <MicrobladingInfo />
+      <TechniqueQuiz client:visible />
+      <Services />
+      <Process />
+      <BeforeAfter client:visible />
+      <HealedResults />
+      <Values />
+      <Philosophy />
+      <About />
+      <Aftercare />
+      <LocalSeo />
+      <FaqSection />
+      <Reviews />
+      <FinalCta />
+    </main>
+    <SiteFooter />
+    <WhatsappBar />
+  </div>
 </Layout>

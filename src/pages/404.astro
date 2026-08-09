@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site, waMessages } from "../lib/site-config";
+import WhatsappCta from "../components/site/WhatsappCta.astro";
+
+const title = `Página no encontrada | ${site.name}`;
+const description = "La página que buscas no existe. Vuelve al inicio o escríbenos por WhatsApp.";
+---
+
+<Layout title={title} description={description} path="/404">
+  <main class="mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-5 py-24 text-center md:px-8">
+    <p class="font-mono text-[0.7rem] uppercase tracking-[0.3em] text-primary">Error 404</p>
+    <h1 class="display-xl mt-6">Esta página no existe</h1>
+    <p class="mt-6 max-w-md text-[0.95rem] leading-relaxed text-muted-foreground">
+      Puede que el enlace haya cambiado o que la página se haya movido. Puedes volver al inicio o escribirnos
+      directamente por WhatsApp.
+    </p>
+    <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row">
+      <a
+        href="/"
+        class="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-[0.78rem] uppercase tracking-[0.14em] text-background transition-colors hover:bg-primary"
+      >
+        Volver al inicio
+      </a>
+      <WhatsappCta message={waMessages.general} variant="outline">
+        Consultar por WhatsApp
+      </WhatsappCta>
+    </div>
+  </main>
+</Layout>

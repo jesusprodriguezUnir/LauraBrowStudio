@@ -1,0 +1,65 @@
+---
+const timeline = [
+  ["Días 1-2", "El color se ve más intenso y oscuro de lo que será, con una ligera inflamación normal."],
+  ["Días 3-5", "El pigmento empieza a oxidarse y la zona puede tirar o picar levemente."],
+  ["Días 5-10", "Aparece una descamación fina. No se debe rascar ni arrancar nada."],
+  ["Días 10-21", "Efecto «ceja fantasma»: el color se ve muy claro porque la piel está regenerándose."],
+  ["Semanas 4-8", "El tono real ya está asentado y es el momento del retoque de perfeccionamiento."],
+];
+
+const dos = [
+  "Limpiar con suavidad según las indicaciones entregadas",
+  "Aplicar la crema recomendada en capa muy fina",
+  "Dormir evitando presionar la zona",
+  "Usar protección solar alta una vez cicatrizada",
+];
+
+const donts = [
+  "Mojar, frotar o exfoliar la zona los primeros días",
+  "Piscina, playa, sauna, vapor y ejercicio intenso (7-10 días)",
+  "Maquillaje, cremas con ácidos o retinol sobre las cejas",
+  "Depilar, teñir o tocar las cejas hasta el retoque",
+];
+---
+
+<section id="cuidados" class="border-t border-border bg-secondary/40 py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-5 md:px-8">
+    <div class="reveal max-w-2xl">
+      <p class="section-kicker">Cicatrización y cuidados</p>
+      <h2 class="section-title mt-4">Qué ocurre después de la sesión</h2>
+      <p class="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
+        El resultado final depende tanto de la técnica como de los cuidados de las primeras semanas.
+        Recibirás las indicaciones por escrito y seguimiento por WhatsApp.
+      </p>
+    </div>
+
+    <ol class="mt-12 grid gap-px overflow-hidden rounded-sm bg-border md:grid-cols-5">
+      {timeline.map(([when, what], i) => (
+        <li class="reveal bg-background p-6">
+          <span class="font-mono text-[0.62rem] tracking-[0.16em] text-primary">0{i + 1}</span>
+          <h3 class="mt-3 text-[0.8rem] font-semibold uppercase tracking-[0.12em]">{when}</h3>
+          <p class="mt-3 text-[0.85rem] leading-relaxed text-muted-foreground">{what}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      <div class="reveal bg-background p-7">
+        <h3 class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-primary">Sí</h3>
+        <ul class="mt-5 space-y-3">
+          {dos.map((item) => (
+            <li class="text-[0.88rem] leading-relaxed text-muted-foreground">{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal bg-background p-7">
+        <h3 class="text-[0.72rem] font-semibold uppercase tracking-[0.14em]">Evitar</h3>
+        <ul class="mt-5 space-y-3">
+          {donts.map((item) => (
+            <li class="text-[0.88rem] leading-relaxed text-muted-foreground">{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

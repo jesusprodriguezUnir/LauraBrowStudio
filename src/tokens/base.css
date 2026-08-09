@@ -4,6 +4,7 @@
 
 * { border-color: var(--border-hairline); }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 body {
   margin: 0;
   background: var(--surface-page);
@@ -21,7 +22,7 @@ a:hover { color: var(--text-body); }
 
 h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: var(--weight-semibold); line-height: var(--lh-snug); }
 p { margin: 0; text-wrap: pretty; }
-:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--ring); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; box-shadow: none; }
 
 /* ── Type utilities ──────────────────────────────────────────────── */
 .display-xl {
@@ -113,3 +114,23 @@ p { margin: 0; text-wrap: pretty; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* ── Prose para blog y legales ────────────────────────────────── */
+.prose-legal { color: var(--text-muted); }
+.prose-legal h2, .prose-legal h3 {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-body);
+  margin-top: 2.25rem;
+  text-transform: uppercase;
+}
+.prose-legal h2 { font-size: var(--size-body-lg); }
+.prose-legal h3 { font-size: var(--size-body); }
+.prose-legal p, .prose-legal ul, .prose-legal ol { margin-top: 1rem; }
+.prose-legal ul, .prose-legal ol { padding-left: 1.25rem; display: grid; gap: 0.6rem; }
+.prose-legal li::marker { color: var(--text-accent); }
+.prose-legal a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-hairline); }
+.prose-legal a:hover { color: var(--text-body); text-decoration-color: currentColor; }
+.prose-legal strong { color: var(--text-body); font-weight: var(--weight-semibold); }
+.prose-legal hr { border: 0; border-top: 1px solid var(--border-hairline); }
+.prose-legal code { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface-muted); padding: 0.1em 0.35em; border-radius: 0.25rem; }
