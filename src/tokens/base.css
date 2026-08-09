@@ -25,6 +25,16 @@ p { margin: 0; text-wrap: pretty; }
 :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; box-shadow: none; }
 
 /* ── Type utilities ──────────────────────────────────────────────── */
+.statement {
+  font-family: var(--font-display);
+  font-size: var(--size-statement);
+  line-height: var(--lh-statement);
+  letter-spacing: var(--tracking-tighter);
+  text-transform: uppercase;
+  font-weight: var(--weight-light);
+}
+.statement strong, .statement b { font-weight: var(--weight-bold); }
+
 .display-xl {
   font-family: var(--font-display);
   font-size: var(--size-display-xl);

@@ -54,9 +54,7 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[0.72rem] uppercase tracking-[0.12em] text-muted-foreground transition-all duration-300 hover:text-foreground hover:scale-105"
+                className="text-[0.8125rem] uppercase tracking-[0.14em] text-muted-foreground transition-all duration-300 hover:text-foreground hover:scale-105"
               >
                 {item.label}
               </a>
@@ -109,10 +107,8 @@ export function SiteHeader() {
               <li key={item.href} className="border-b border-border/60 last:border-0">
                 <a
                   href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
-                  className="block py-4 text-sm font-medium uppercase tracking-[0.12em]"
+                  className="block py-4 text-sm font-medium uppercase tracking-[0.14em]"
                 >
                   {item.label}
                 </a>

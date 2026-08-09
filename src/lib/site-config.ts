@@ -18,6 +18,8 @@ export const site = {
   whatsappNumber: (env["PUBLIC_WHATSAPP_NUMBER"] as string | undefined) ?? "34600123456",
   email: (env["PUBLIC_EMAIL"] as string | undefined) ?? "hola@laurabrowstudio.es",
   address: (env["PUBLIC_ADDRESS"] as string | undefined) ?? "Calle Mayor Principal, 34001 Palencia",
+  /** Código postal aisla para schema.org PostalAddress. Vacío = no se emite. */
+  postalCode: (env["PUBLIC_POSTAL_CODE"] as string | undefined) ?? "34001",
   instagram: (env["PUBLIC_INSTAGRAM"] as string | undefined) ?? "laurabrowstudio",
 
   legalName: (env["PUBLIC_LEGAL_NAME"] as string | undefined) ?? BIZ_NAME,

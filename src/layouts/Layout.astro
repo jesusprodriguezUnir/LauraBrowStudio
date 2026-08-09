@@ -39,7 +39,7 @@ const addressSchema = site.address.startsWith("[") ? undefined : {
   streetAddress: site.address,
   addressLocality: site.city,
   addressRegion: site.region,
-  postalCode: "34002",
+  postalCode: site.postalCode || undefined,
   addressCountry: "ES",
 };
 
