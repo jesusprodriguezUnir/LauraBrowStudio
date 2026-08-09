@@ -133,7 +133,7 @@ export function TechniqueQuiz() {
                           aria-pressed={answers[q.id] === oi}
                           className={`rounded-full px-4 py-2.5 text-[0.78rem] transition-colors duration-300 ${
                             answers[q.id] === oi
-                              ? "bg-foreground text-background"
+                              ? "bg-primary text-primary-foreground"
                               : "border border-border text-muted-foreground hover:border-foreground hover:text-foreground"
                           }`}
                         >
@@ -149,7 +149,7 @@ export function TechniqueQuiz() {
                 type="button"
                 disabled={answered < total}
                 onClick={() => setDone(true)}
-                className="mt-9 w-full rounded-full bg-foreground px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-background transition-colors duration-300 hover:bg-primary disabled:cursor-not-allowed disabled:opacity-35"
+                className="mt-9 w-full rounded-full bg-primary px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-primary-foreground transition-colors duration-300 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-35"
               >
                 Ver orientación
               </button>

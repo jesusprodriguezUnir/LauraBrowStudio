@@ -67,7 +67,7 @@ function CaseCard({
             aria-selected={tab === t.key}
             onClick={() => setTab(t.key)}
             className={`rounded-full px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
-              tab === t.key ? "bg-foreground text-background" : "border border-border text-muted-foreground"
+              tab === t.key ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground"
             }`}
           >
             {t.label}

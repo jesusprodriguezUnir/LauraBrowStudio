@@ -28,8 +28,8 @@ const sizes: Record<string, string> = {
     "inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300",
     sizes[size],
     variant === "solid"
-      ? "bg-foreground text-background hover:bg-primary"
-      : "border border-border text-foreground hover:border-foreground",
+      ? "bg-primary text-primary-foreground hover:brightness-110 shadow-sm"
+      : "border border-primary text-primary hover:bg-primary hover:text-primary-foreground",
     className,
   ]}
 >
