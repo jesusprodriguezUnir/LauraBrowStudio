@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Menu, X, MessageCircle, Sun, Moon } from "lucide-react";
-import logoMocha from "@/assets/logo-wordmark-mocha.png?url";
+import logoMain from "@/assets/brow-mark.png?url";
 import { site, waLink, waMessages } from "@/lib/site-config";
 import { WhatsappCta } from "./cta";
 
 const nav = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Microblading", href: "#microblading" },
-  { label: "Técnicas", href: "#servicios" },
-  { label: "Test", href: "#test" },
-  { label: "Resultados", href: "#resultados" },
-  { label: "Sobre mí", href: "#sobre-mi" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Inicio", href: "/" },
+  { label: "Microblading", href: "/microblading" },
+  { label: "Resultados", href: "/resultados" },
+  { label: "Sobre mí", href: "/sobre-mi" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export function SiteHeader() {
@@ -30,15 +28,15 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 text-foreground backdrop-blur-md transition-colors duration-300">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 text-foreground backdrop-blur-md transition-colors duration-300">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-8">
         <a href="#inicio" className="flex min-w-0 items-center" aria-label={`${site.name}, inicio`}>
           <img
-            src={logoMocha}
+            src={logoMain}
             alt=""
             width={480}
-            height={180}
-            className="h-11 max-w-[14rem] object-contain transition duration-500 md:h-14 md:max-w-[16rem]"
+            height={480}
+            className="h-16 w-auto max-w-[14rem] object-contain transition duration-500 md:h-20 md:max-w-[16rem] dark:invert dark:brightness-200"
           />
           <span className="sr-only">
             <span className="block truncate text-base font-semibold uppercase tracking-[0.08em] md:text-lg">
@@ -56,7 +54,9 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-[0.72rem] uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[0.72rem] uppercase tracking-[0.12em] text-muted-foreground transition-all duration-300 hover:text-foreground hover:scale-105"
               >
                 {item.label}
               </a>
@@ -109,6 +109,8 @@ export function SiteHeader() {
               <li key={item.href} className="border-b border-border/60 last:border-0">
                 <a
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                   className="block py-4 text-sm font-medium uppercase tracking-[0.12em]"
                 >

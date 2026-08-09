@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { CheckCircle2, MessageCircle } from "lucide-react";
 import { site, waLink, waMessages } from "@/lib/site-config";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(2, "Escribe tu nombre"),
@@ -23,7 +24,7 @@ const today = new Date(Date.now() + 86400000).toISOString().split("T")[0];
 const minDate = today;
 
 const inputBase =
-  "w-full rounded-sm border border-input bg-background px-3.5 py-2.5 text-[0.88rem] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "w-full rounded-md border border-input bg-surface-card px-3.5 py-2.5 text-[0.88rem] text-foreground placeholder:text-muted-foreground transition-all duration-300 focus-visible:outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring hover:border-foreground/30";
 const labelBase = "mb-1.5 block text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground";
 const errorBase = "mt-1 text-[0.72rem] text-destructive";
 
@@ -75,10 +76,13 @@ export function BookingForm() {
         setStatus("done");
         reset();
         setTurnstileToken("");
+        toast.success("Solicitud enviada correctamente.");
         return;
       } catch {
         setStatus("idle");
-        window.alert("No se ha podido enviar el formulario. Escríbenos por WhatsApp para reservar.");
+        toast.error("No se ha podido enviar el formulario.", {
+          description: "Por favor, escríbenos directamente por WhatsApp para reservar.",
+        });
         return;
       }
     }

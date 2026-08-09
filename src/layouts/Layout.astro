@@ -16,6 +16,7 @@ import "@fontsource/cormorant-garamond/latin-500.css";
 
 import { site } from "../lib/site-config";
 import { faqItems } from "../lib/faq";
+import { Toaster } from "sonner";
 
 interface Props {
   title: string;
@@ -155,6 +156,8 @@ const breadcrumbSchema = path !== "/"
     </a>
 
     <slot />
+
+    <Toaster client:load position="bottom-center" richColors closeButton />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(beautySalonSchema)} />
     {includeFaq && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}

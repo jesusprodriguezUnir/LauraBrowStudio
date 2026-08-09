@@ -3,18 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import { site } from "../lib/site-config";
 import { SiteHeader } from "../components/site/site-header";
 import Hero from "../components/site/Hero.astro";
-import MicrobladingInfo from "../components/site/MicrobladingInfo.astro";
-import { TechniqueQuiz } from "../components/site/technique-quiz";
 import Services from "../components/site/Services.astro";
-import Process from "../components/site/Process.astro";
-import { BeforeAfter } from "../components/site/before-after";
-import HealedResults from "../components/site/HealedResults.astro";
-import Values from "../components/site/Values.astro";
 import Philosophy from "../components/site/Philosophy.astro";
 import About from "../components/site/About.astro";
-import Aftercare from "../components/site/Aftercare.astro";
-import LocalSeo from "../components/site/LocalSeo.astro";
-import FaqSection from "../components/site/FaqSection.astro";
 import Reviews from "../components/site/Reviews.astro";
 import FinalCta from "../components/site/FinalCta.astro";
 import SiteFooter from "../components/site/SiteFooter.astro";
@@ -30,18 +21,9 @@ const description =
     <SiteHeader client:load />
     <main>
       <Hero />
-      <MicrobladingInfo />
-      <TechniqueQuiz client:visible />
       <Services />
-      <Process />
-      <BeforeAfter client:visible />
-      <HealedResults />
-      <Values />
       <Philosophy />
       <About />
-      <Aftercare />
-      <LocalSeo />
-      <FaqSection />
       <Reviews />
       <FinalCta />
     </main>

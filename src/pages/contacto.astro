@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../lib/site-config";
+import { SiteHeader } from "../components/site/site-header";
+import FaqSection from "../components/site/FaqSection.astro";
+import FinalCta from "../components/site/FinalCta.astro";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
+
+const title = `Contacto y Preguntas Frecuentes | ${site.name}`;
+const description = "Contacta con LauraBrowStudio en Palencia. Solicita tu valoración gratuita para microblading o resuelve tus dudas en nuestra sección de FAQ.";
+---
+
+<Layout title={title} description={description} includeFaq>
+  <div class="min-h-screen" id="contenido">
+    <SiteHeader client:load />
+    <main class="pt-16 md:pt-24">
+      <FinalCta />
+      <FaqSection />
+    </main>
+    <SiteFooter />
+    <WhatsappBar />
+  </div>
+</Layout>

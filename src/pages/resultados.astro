@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../lib/site-config";
+import { SiteHeader } from "../components/site/site-header";
+import { BeforeAfter } from "../components/site/before-after";
+import HealedResults from "../components/site/HealedResults.astro";
+import Reviews from "../components/site/Reviews.astro";
+import FinalCta from "../components/site/FinalCta.astro";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
+
+const title = `Resultados y Casos de Éxito | ${site.name}`;
+const description = "Explora nuestros casos de éxito y fotos de antes y después de microblading. Mira cómo quedan los resultados curados y cicatrizados tras unos meses.";
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen" id="contenido">
+    <SiteHeader client:load />
+    <main class="pt-16 md:pt-24">
+      <BeforeAfter client:visible />
+      <HealedResults />
+      <Reviews />
+      <FinalCta />
+    </main>
+    <SiteFooter />
+    <WhatsappBar />
+  </div>
+</Layout>

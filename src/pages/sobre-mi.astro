@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../lib/site-config";
+import { SiteHeader } from "../components/site/site-header";
+import About from "../components/site/About.astro";
+import Philosophy from "../components/site/Philosophy.astro";
+import Values from "../components/site/Values.astro";
+import LocalSeo from "../components/site/LocalSeo.astro";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
+
+const title = `Sobre Mí y Mi Filosofía | ${site.name}`;
+const description = "Conoce a LauraBrowStudio, tu especialista en micropigmentación en Palencia. Descubre mi filosofía, valores y el estudio donde transformamos tu mirada.";
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen" id="contenido">
+    <SiteHeader client:load />
+    <main class="pt-16 md:pt-24">
+      <About />
+      <Philosophy />
+      <Values />
+      <LocalSeo />
+    </main>
+    <SiteFooter />
+    <WhatsappBar />
+  </div>
+</Layout>

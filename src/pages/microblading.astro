@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../lib/site-config";
+import { SiteHeader } from "../components/site/site-header";
+import MicrobladingInfo from "../components/site/MicrobladingInfo.astro";
+import { TechniqueQuiz } from "../components/site/technique-quiz";
+import Process from "../components/site/Process.astro";
+import Aftercare from "../components/site/Aftercare.astro";
+import FinalCta from "../components/site/FinalCta.astro";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
+
+const title = `Microblading y Técnicas | ${site.name}`;
+const description = "Descubre nuestras técnicas de microblading y micropigmentación de cejas. Conoce el proceso, el test para saber qué técnica es para ti y los cuidados.";
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen" id="contenido">
+    <SiteHeader client:load />
+    <main class="pt-16 md:pt-24">
+      <MicrobladingInfo />
+      <TechniqueQuiz client:visible />
+      <Process />
+      <Aftercare />
+      <FinalCta />
+    </main>
+    <SiteFooter />
+    <WhatsappBar />
+  </div>
+</Layout>

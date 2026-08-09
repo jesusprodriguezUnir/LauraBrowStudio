@@ -2,16 +2,16 @@
    Values lifted verbatim from src/styles.css of the LauraBrowStudio site. */
 :root {
   /* ── Base ramp: ivory → beige → mocha → charcoal ───────────────── */
-  --ivory-50: oklch(0.995 0.004 85);
-  --ivory-100: oklch(0.972 0.009 84);
+  --ivory-50: oklch(0.995 0.004 90);
+  --ivory-100: oklch(0.985 0.006 90);
   --beige-200: oklch(0.945 0.014 80);
   --beige-300: oklch(0.928 0.013 78);
   --beige-400: oklch(0.895 0.022 45);
   --line-300: oklch(0.878 0.013 76);
   --warm-gray-500: oklch(0.46 0.018 55);
   --mocha-500: oklch(0.455 0.038 40);
-  --charcoal-800: oklch(0.28 0.008 60);
-  --charcoal-900: oklch(0.255 0.012 50);
+  --charcoal-800: oklch(0.35 0.01 50);
+  --charcoal-900: oklch(0.30 0.012 50);
 
   /* ── Logo palette ─────────────────────────────────────────────────
      Sampled from the supplied LAURA BROW STUDIO artwork. Gold belongs to

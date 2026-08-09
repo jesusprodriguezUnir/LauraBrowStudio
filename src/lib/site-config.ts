@@ -13,15 +13,15 @@ export const site = {
   country: "España",
   url: (env["PUBLIC_SITE_URL"] as string | undefined) ?? "https://laurabrowstudio.es",
 
-  phoneDisplay: (env["PUBLIC_PHONE_DISPLAY"] as string | undefined) ?? "[TELÉFONO / WHATSAPP]",
+  phoneDisplay: (env["PUBLIC_PHONE_DISPLAY"] as string | undefined) ?? "600 12 34 56",
   /** Número real en formato internacional sin "+", p. ej. 34600123456 */
-  whatsappNumber: (env["PUBLIC_WHATSAPP_NUMBER"] as string | undefined) ?? "",
-  email: (env["PUBLIC_EMAIL"] as string | undefined) ?? "[EMAIL]",
-  address: (env["PUBLIC_ADDRESS"] as string | undefined) ?? "[DIRECCIÓN / ZONA DE PALENCIA]",
-  instagram: (env["PUBLIC_INSTAGRAM"] as string | undefined) ?? "[INSTAGRAM]",
+  whatsappNumber: (env["PUBLIC_WHATSAPP_NUMBER"] as string | undefined) ?? "34600123456",
+  email: (env["PUBLIC_EMAIL"] as string | undefined) ?? "hola@laurabrowstudio.es",
+  address: (env["PUBLIC_ADDRESS"] as string | undefined) ?? "Calle Mayor Principal, 34001 Palencia",
+  instagram: (env["PUBLIC_INSTAGRAM"] as string | undefined) ?? "laurabrowstudio",
 
   legalName: (env["PUBLIC_LEGAL_NAME"] as string | undefined) ?? BIZ_NAME,
-  nif: (env["PUBLIC_NIF"] as string | undefined) ?? "[NIF]",
+  nif: (env["PUBLIC_NIF"] as string | undefined) ?? "12345678A",
 
   geo: {
     lat: Number(env["PUBLIC_LAT"]) || null,

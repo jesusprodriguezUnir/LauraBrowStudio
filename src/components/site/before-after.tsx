@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { X } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import before1 from "@/assets/case-before-1.jpg?url";
 import design1 from "@/assets/case-design-1.jpg?url";
 import result1 from "@/assets/case-result-1.jpg?url";
@@ -83,6 +85,13 @@ function CaseCard({
 
 export function BeforeAfter() {
   const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", dragFree: true }, [
+    Autoplay({ delay: 5000, stopOnInteraction: true }),
+  ]);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
     <section id="resultados" className="border-t border-border bg-secondary/40 py-20 md:py-28">
@@ -115,10 +124,31 @@ export function BeforeAfter() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {cases.map((item) => (
-            <CaseCard key={item.id} item={item} onOpen={(src, label) => setLightbox({ src, label })} />
-          ))}
+        <div className="mt-16 relative group">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex touch-pan-y -ml-4 md:-ml-6">
+              {cases.map((item) => (
+                <div key={item.id} className="min-w-0 flex-none pl-4 md:pl-6 w-[85vw] sm:w-[45vw] md:w-[35vw] lg:w-[25vw]">
+                  <CaseCard item={item} onOpen={(src, label) => setLightbox({ src, label })} />
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <button
+            type="button"
+            className="absolute left-4 top-1/3 z-10 grid h-10 w-10 -translate-y-1/2 -translate-x-1/2 place-items-center rounded-full bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100 disabled:opacity-0"
+            onClick={scrollPrev}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            className="absolute right-4 top-1/3 z-10 grid h-10 w-10 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100 disabled:opacity-0"
+            onClick={scrollNext}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
         </div>
       </div>
 
