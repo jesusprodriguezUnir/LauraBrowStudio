@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="README - Información del Repositorio" description="Información técnica del proyecto">
+  <div class="mx-auto max-w-3xl px-5 py-32 md:px-8">
+    <div class="mx-auto flex flex-col gap-6 text-muted-foreground text-sm md:text-base">
+      <h1 class="text-3xl md:text-4xl font-display font-medium text-foreground mb-4">Welcome to your Lovable project</h1>
+      
+      <p>This project was built with <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Lovable</a>.</p>
+      
+      <h2 class="text-2xl font-display font-medium text-foreground mt-8">Build with Lovable</h2>
+      <p>Open your project in the <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Lovable editor</a> and keep building.</p>
+      
+      <ul class="list-disc pl-5 flex flex-col gap-2">
+        <li><strong class="text-foreground">Ship faster</strong>: describe what you want to build and Lovable handles the code.</li>
+        <li><strong class="text-foreground">Stay in sync</strong>: connect the project to GitHub and every change made in Lovable is committed straight to your repository.</li>
+        <li><strong class="text-foreground">Full ownership</strong>: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.</li>
+      </ul>
+      
+      <h2 class="text-2xl font-display font-medium text-foreground mt-8">Development</h2>
+      <p>Prefer working locally? You need Node.js and npm — <a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">install with nvm</a>.</p>
+      
+      <pre class="bg-secondary/50 p-4 rounded-md text-xs font-mono text-foreground overflow-x-auto border border-border"><code>git clone &lt;this-repository-url&gt;
+cd &lt;repository-name&gt;
+npm i
+npm run dev</code></pre>
+      
+      <h2 class="text-2xl font-display font-medium text-foreground mt-8">Built with</h2>
+      <ul class="list-disc pl-5 flex flex-col gap-2">
+        <li>TanStack Start</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Tailwind CSS</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

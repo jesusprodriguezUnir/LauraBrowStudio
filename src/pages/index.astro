@@ -3,25 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import { site } from '../lib/site-config';
 import { SiteHeader } from '../components/site/site-header';
 import { Hero } from '../components/site/hero';
-import { Values } from '../components/site/values';
-import { BeforeAfter } from '../components/site/before-after';
-import { Philosophy } from '../components/site/philosophy';
 import { MicrobladingInfo } from '../components/site/microblading-info';
-import { Aftercare } from '../components/site/aftercare';
+import { BeforeAfter } from '../components/site/before-after';
 import { Services } from '../components/site/services';
-import { TechniqueQuiz } from '../components/site/technique-quiz';
-import { Process } from '../components/site/process';
+import { Aftercare } from '../components/site/aftercare';
 import { About } from '../components/site/about';
-import { HealedResults } from '../components/site/healed-results';
-import { Reviews } from '../components/site/reviews';
 import { FaqSection } from '../components/site/faq-section';
-import { LocalSeo } from '../components/site/local-seo';
+import { Reviews } from '../components/site/reviews';
 import { FinalCta } from '../components/site/final-cta';
 import { SiteFooter } from '../components/site/site-footer';
 import { WhatsappBar } from '../components/site/whatsapp-bar';
 
 const title = `Microblading en Palencia | ${site.name}`;
-const description = "Microblading, micropigmentación y diseño de cejas en Palencia. Resultado natural, diseñado según tus facciones. Solicita tu valoración por WhatsApp.";
+const description = "Microblading pelo a pelo en Palencia. Resultado natural, diseñado según tus facciones. Especialistas en micropigmentación de cejas. Solicita tu valoración.";
 ---
 
 <Layout title={title} description={description}>
@@ -29,19 +23,13 @@ const description = "Microblading, micropigmentación y diseño de cejas en Pale
       <SiteHeader client:load />
       <main>
         <Hero client:load />
-        <Values client:load />
         <MicrobladingInfo client:load />
-        <Philosophy client:load />
         <BeforeAfter client:load />
         <Services client:load />
-        <TechniqueQuiz client:load />
-        <Process client:load />
         <Aftercare client:load />
-        <HealedResults client:load />
         <About client:load />
-        <Reviews client:load />
         <FaqSection client:load />
-        <LocalSeo client:load />
+        <Reviews client:load />
         <FinalCta client:load />
       </main>
       <SiteFooter client:load />

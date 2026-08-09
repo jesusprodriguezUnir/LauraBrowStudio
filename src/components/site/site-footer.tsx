@@ -49,6 +49,11 @@ export function SiteFooter() {
                 Política de cookies
               </a>
             </li>
+            <li>
+              <a href="/readme" className="nav-link text-primary/70">
+                Información del repositorio (README)
+              </a>
+            </li>
           </ul>
         </div>
       </div>

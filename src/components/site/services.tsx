@@ -1,35 +1,30 @@
 import result1 from "@/assets/case-result-1.jpg?url";
-import result2 from "@/assets/case-result-2.jpg?url";
-import tools from "@/assets/service-tools.jpg?url";
 import designImg from "@/assets/service-design.jpg?url";
+import brow from "@/assets/brow-result.jpg?url";
 import { waMessages } from "@/lib/site-config";
 import { WhatsappCta } from "./cta";
 
-const services = [
+const phases = [
   {
-    name: "Microblading",
+    step: "01",
+    name: "Valoración y diseño",
+    image: designImg,
+    description:
+      "Antes de pigmentar analizamos tus cejas, tu piel y el resultado que buscas. Se dibuja el diseño a mano alzada y se aprueba contigo antes de empezar.",
+  },
+  {
+    step: "02",
+    name: "Sesión de microblading",
     image: result1,
     description:
-      "Técnica pelo a pelo para aportar definición y densidad manteniendo un acabado natural.",
-    fit: "Puede encajar si buscas un resultado muy natural y tienes algo de vello propio.",
+      "Pelo a pelo, con una herramienta de microcuchillas y pigmentos certificados. Se trabaja con anestésico tópico para que la sesión sea cómoda desde el primer momento.",
   },
   {
-    name: "Shading",
-    image: result2,
-    description: "Sombreado para conseguir un efecto más definido y maquillado.",
-    fit: "Puede encajar si te gusta llevar la ceja rellena y con más presencia.",
-  },
-  {
-    name: "Técnica mixta",
-    image: tools,
-    description: "Combinación de pelo a pelo y sombreado en la misma ceja.",
-    fit: "Puede encajar si quieres densidad y definición a la vez.",
-  },
-  {
-    name: "Diseño de cejas",
-    image: designImg,
-    description: "Estudio y diseño personalizado de la forma de la ceja.",
-    fit: "Puede encajar si quieres recuperar la forma antes de decidir una técnica.",
+    step: "03",
+    name: "Retoque de perfeccionamiento",
+    image: brow,
+    description:
+      "A las 4-8 semanas se realiza el retoque para ajustar color, rellenar zonas que no hayan retenido pigmento y consolidar el resultado definitivo.",
   },
 ];
 
@@ -38,33 +33,34 @@ export function Services() {
     <section id="servicios" className="border-t border-border bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="reveal max-w-2xl">
-          <p className="section-kicker">Servicios</p>
-          <h2 className="section-title mt-4">Técnicas de micropigmentación de cejas</h2>
+          <p className="section-kicker">Cómo funciona</p>
+          <h2 className="section-title mt-4">El proceso del microblading, paso a paso</h2>
           <p className="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
-            La técnica se elige después de valorar tus cejas, tu piel y el resultado que quieres conseguir.
+            Cada sesión comienza con un diseño personalizado y termina con unas cejas que parecen tuyas.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          {services.map((service) => (
-            <article key={service.name} className="reveal flex flex-col bg-background p-5 md:p-6">
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {phases.map((phase) => (
+            <article key={phase.step} className="reveal flex flex-col bg-background p-5 md:p-6">
               <div className="image-frame aspect-[16/11]">
                 <img
-                  src={service.image}
-                  alt={`${service.name} — cejas en Palencia`}
+                  src={phase.image}
+                  alt={`${phase.name} — microblading en Palencia`}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                 />
               </div>
-              <h3 className="mt-6 font-display text-2xl tracking-tight">{service.name}</h3>
-              <p className="mt-3 text-[0.88rem] leading-relaxed text-muted-foreground">{service.description}</p>
-              <p className="mt-4 border-l border-primary/40 pl-3 text-[0.82rem] leading-relaxed text-muted-foreground">
-                {service.fit}
+              <p className="mt-6 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-primary">
+                Paso {phase.step}
               </p>
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-5">
-                <span className="placeholder-tag">Precio próximamente</span>
-                <WhatsappCta message={waMessages.service(service.name)} variant="outline">
-                  Consultar valoración
+              <h3 className="mt-2 font-display text-2xl tracking-tight">{phase.name}</h3>
+              <p className="mt-3 text-[0.88rem] leading-relaxed text-muted-foreground">
+                {phase.description}
+              </p>
+              <div className="mt-auto pt-7">
+                <WhatsappCta message={waMessages.service("microblading")} variant="outline" className="h-9 px-4 text-xs">
+                  Reservar valoración
                 </WhatsappCta>
               </div>
             </article>

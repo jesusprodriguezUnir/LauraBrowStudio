@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import logoMocha from "@/assets/logo-wordmark-mocha.png?url";
-import logoIvory from "@/assets/logo-wordmark-ivory.png?url";
 import { site, waLink, waMessages } from "@/lib/site-config";
 import { WhatsappCta } from "./cta";
 
 const nav = [
   { label: "Inicio", href: "#inicio" },
   { label: "Microblading", href: "#microblading" },
-  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso", href: "#servicios" },
   { label: "Cuidados", href: "#cuidados" },
   { label: "Resultados", href: "#resultados" },
   { label: "Sobre mí", href: "#sobre-mi" },
@@ -17,41 +16,23 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/90 text-foreground backdrop-blur-md"
-          : "bg-transparent text-background"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 text-foreground backdrop-blur-md transition-all duration-300">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-8">
         <a href="#inicio" className="flex min-w-0 items-center" aria-label={`${site.name}, inicio`}>
           <img
-            src={scrolled ? logoMocha : logoIvory}
+            src={logoMocha}
             alt={site.name}
             width={480}
             height={180}
-            className="brand-logo h-9 max-w-[10rem] object-left transition md:h-10 md:max-w-[11rem]"
+            className="brand-logo h-11 max-w-[14rem] object-left transition duration-500 md:h-14 md:max-w-[16rem]"
           />
           <span className="sr-only">
             <span className="block truncate text-base font-semibold uppercase tracking-[0.08em] md:text-lg">
               {site.name}
             </span>
-            <span
-              className={`mt-0.5 block truncate text-[0.6rem] uppercase tracking-[0.22em] ${
-                scrolled ? "text-muted-foreground" : "text-background/70"
-              }`}
-            >
+            <span className="mt-0.5 block truncate text-[0.6rem] uppercase tracking-[0.22em] text-muted-foreground">
               Cejas · Micropigmentación · {site.city}
             </span>
           </span>
@@ -63,11 +44,7 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`text-[0.72rem] uppercase tracking-[0.12em] transition-colors ${
-                  scrolled
-                    ? "text-muted-foreground hover:text-foreground"
-                    : "text-background/85 hover:text-background"
-                }`}
+                className="text-[0.72rem] uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
               </a>
@@ -94,9 +71,7 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
-            className={`grid h-11 w-11 shrink-0 place-items-center rounded-full border lg:hidden ${
-              scrolled ? "border-border" : "border-background/50"
-            }`}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border lg:hidden"
           >
             {open ? (
               <X className="h-4 w-4" aria-hidden="true" />

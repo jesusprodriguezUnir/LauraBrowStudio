@@ -22,7 +22,6 @@ export function Reviews() {
                 <span className="text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground">
                   [NOMBRE CLIENTA]
                 </span>
-                <span className="placeholder-tag">Pendiente</span>
               </footer>
             </blockquote>
           ))}

@@ -22,14 +22,11 @@ type Case = {
 
 const cases: Case[] = [
   { id: "01", technique: "Microblading", outcome: "Resultado natural", before: before1, design: design1, result: result1 },
-  { id: "02", technique: "Shading", outcome: "Definición suave", before: before2, design: design1, result: result2 },
-  { id: "03", technique: "Técnica mixta", outcome: "Natural y definido", before: before1, design: design1, result: healedHealed },
+  { id: "02", technique: "Microblading", outcome: "Definición pelo a pelo", before: before2, design: design1, result: result2 },
+  { id: "03", technique: "Microblading", outcome: "Natural y simétrico", before: before1, design: design1, result: healedHealed },
   { id: "04", technique: "Microblading", outcome: "Recuperación de forma", before: before2, design: design1, result: browResult },
-  { id: "05", technique: "Diseño de cejas", outcome: "Simetría equilibrada", before: before1, design: design1, result: healedFresh },
-  { id: "06", technique: "Shading", outcome: "Efecto maquillado", before: before2, design: design1, result: result2 },
-  { id: "07", technique: "Técnica mixta", outcome: "Más densidad", before: before1, design: design1, result: result1 },
-  { id: "08", technique: "Microblading", outcome: "Acabado pelo a pelo", before: before2, design: design1, result: healedHealed },
 ];
+
 
 const tabs = [
   { key: "before", label: "Antes" },
@@ -53,7 +50,6 @@ function CaseCard({ item }: { item: Case }) {
           height={1280}
           className="h-full w-full object-cover transition-opacity duration-500"
         />
-        <span className="placeholder-tag absolute bottom-3 left-3 bg-background/85">Imagen de ejemplo</span>
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {tabs.map((t) => (

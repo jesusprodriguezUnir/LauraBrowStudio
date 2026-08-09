@@ -17,7 +17,6 @@ export function About() {
               className="h-full w-full object-cover"
             />
           </div>
-          <span className="placeholder-tag absolute bottom-3 left-3 bg-background/85">Fotografía provisional</span>
         </div>
 
         <div className="reveal">

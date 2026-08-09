@@ -1,7 +1,7 @@
 /* LauraBrowStudio — typography.
    One family (Poppins) does everything: display, body and label. */
 :root {
-  --font-display: "Poppins", "Jost", sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant", Didot, "Times New Roman", serif;
   --font-body: "Poppins", "Jost", sans-serif;
   --font-label: "Poppins", sans-serif;
   --font-mono: var(--font-label); /* the site's name for the label face */
