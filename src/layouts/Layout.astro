@@ -100,6 +100,8 @@ const breadcrumbSchema = path !== "/"
       ],
     }
   : undefined;
+
+import WhatsappFloating from "../components/site/WhatsappFloating.astro";
 ---
 
 <!doctype html>
@@ -205,5 +207,7 @@ const breadcrumbSchema = path !== "/"
         mo.observe(document.documentElement, { childList: true, subtree: true });
       })();
     </script>
+
+    <WhatsappFloating />
   </body>
 </html>
