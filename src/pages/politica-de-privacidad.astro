@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../lib/site-config';
+
+const title = `Política de privacidad | ${site.name}`;
+const description = "Información sobre el tratamiento de datos personales del estudio de cejas.";
+---
+
+<Layout title={title} description={description}>
+    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+      <a href="/" class="nav-link">
+        &larr; Volver al inicio
+      </a>
+      <h1 class="section-title mt-6">Política de privacidad</h1>
+      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
+        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
+        <p>
+          Este apartado recogerá la información exigida por el Reglamento (UE) 2016/679 (RGPD) y la LOPDGDD sobre el
+          tratamiento de datos personales.
+        </p>
+        <ul class="space-y-1.5">
+          <li>Responsable del tratamiento: {site.name} &mdash; {site.address}</li>
+          <li>Finalidad: atender consultas y solicitudes de valoración recibidas por WhatsApp, teléfono o email</li>
+          <li>Base jurídica: consentimiento de la persona interesada</li>
+          <li>Conservación: [PLAZO DE CONSERVACIÓN]</li>
+          <li>Destinatarios: [ENCARGADOS DE TRATAMIENTO]</li>
+          <li>Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad</li>
+        </ul>
+        <p>
+          Para ejercer tus derechos podrás escribir a {site.email}. Los datos concretos se completarán antes de la
+          publicación definitiva de la web.
+        </p>
+      </div>
+    </main>
+</Layout>

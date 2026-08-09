@@ -1,0 +1,115 @@
+/* LauraBrowStudio — base element defaults + the site's own utility classes.
+   These are the Tailwind @utility rules from src/styles.css, rewritten as plain
+   CSS classes so consumers get the identical look without Tailwind. */
+
+* { border-color: var(--border-hairline); }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--size-body-lg);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: color-mix(in oklab, var(--text-accent) 25%, transparent); }
+img { display: block; max-width: 100%; }
+
+a { color: var(--text-accent); text-decoration: none; transition: color var(--dur-hover) var(--ease-standard); }
+a:hover { color: var(--text-body); }
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: var(--weight-semibold); line-height: var(--lh-snug); }
+p { margin: 0; text-wrap: pretty; }
+:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--ring); }
+
+/* ── Type utilities ──────────────────────────────────────────────── */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--size-display-xl);
+  line-height: var(--lh-display-xl);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  font-weight: var(--weight-light);
+}
+.display-xl strong, .display-xl b { font-weight: var(--weight-bold); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--size-section-title);
+  line-height: var(--lh-section-title);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  font-weight: var(--weight-semibold);
+}
+
+.section-kicker {
+  color: var(--text-accent);
+  font-family: var(--font-label);
+  font-size: var(--size-kicker);
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-accent);
+  font-family: var(--font-label);
+  font-size: var(--size-kicker);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+.eyebrow-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--text-accent);
+  box-shadow: var(--shadow-dot-ring);
+}
+
+.nav-link {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  transition: color var(--dur-hover) var(--ease-standard);
+}
+.nav-link:hover { color: var(--text-body); }
+
+/* ── Surfaces ────────────────────────────────────────────────────── */
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+  box-shadow: var(--shadow-frame);
+}
+.image-frame > img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; }
+
+.hairline { border-top: var(--border-width) solid var(--border-hairline); }
+
+.placeholder-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: var(--border-dashed);
+  border-radius: var(--radius-pill);
+  padding: 0.15rem 0.55rem;
+  color: var(--text-muted);
+  font-size: var(--size-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────── */
+.reveal {
+  transition: opacity var(--dur-reveal) var(--ease-out-quint),
+              transform var(--dur-reveal) var(--ease-out-quint);
+}
+.reveal[data-reveal="hidden"] { opacity: 0; transform: translateY(var(--reveal-offset)); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

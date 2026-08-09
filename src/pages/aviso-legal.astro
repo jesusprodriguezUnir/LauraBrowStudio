@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../lib/site-config';
+
+const title = `Aviso legal | ${site.name} — Microblading en ${site.city}`;
+const description = `Aviso legal del estudio de microblading y micropigmentación de cejas en ${site.city}.`;
+---
+
+<Layout title={title} description={description}>
+    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+      <a href="/" class="nav-link">
+        &larr; Volver al inicio
+      </a>
+      <h1 class="section-title mt-6">Aviso legal</h1>
+      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
+        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
+        <p>
+          En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico
+          (LSSI-CE), en este apartado se publicarán los datos identificativos del titular del sitio web.
+        </p>
+        <ul class="space-y-1.5">
+          <li>Titular: {site.name}</li>
+          <li>NIF: [NIF]</li>
+          <li>Domicilio: {site.address}</li>
+          <li>Teléfono: {site.phoneDisplay}</li>
+          <li>Email: {site.email}</li>
+          <li>Actividad: micropigmentación y diseño de cejas</li>
+        </ul>
+        <p>
+          Se completarán igualmente las condiciones de uso, la propiedad intelectual de los contenidos, la
+          responsabilidad sobre los enlaces y la legislación aplicable cuando dispongamos de los datos definitivos.
+        </p>
+      </div>
+    </main>
+</Layout>

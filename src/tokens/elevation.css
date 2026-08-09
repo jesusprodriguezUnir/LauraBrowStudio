@@ -1,0 +1,33 @@
+/* LauraBrowStudio — radii, borders, elevation.
+   Corners are almost square; the pill is reserved for actions. */
+:root {
+  --radius: 0.5rem;
+  --radius-sm: 0.25rem;   /* calc(var(--radius) - 4px) — image frames, tile grids */
+  --radius-md: 0.375rem;  /* calc(var(--radius) - 2px) */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-pill: 999px;   /* every button, chip and toggle */
+
+  --border-width: 1px; /* @kind spacing */    /* the brand only ever uses hairlines */
+  --border-dashed: 1px dashed var(--border-hairline);
+
+  /* Elevation is a single soft warm bloom, never a grey drop shadow. */
+  --shadow-frame: 0 24px 60px -40px color-mix(in oklab, var(--text-body) 45%, transparent);
+  --shadow-thumb: 0 6px 18px -10px color-mix(in oklab, var(--text-body) 60%, transparent);
+  --shadow-dot-ring: 0 0 0 4px color-mix(in oklab, var(--text-accent) 13%, transparent);
+  --shadow-button: 0 1px 2px 0 color-mix(in oklab, var(--text-body) 8%, transparent);
+
+  /* Protection gradients over photography */
+  --scrim-bottom: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--text-body) 78%, transparent) 0%,
+    color-mix(in oklab, var(--text-body) 34%, transparent) 48%,
+    transparent 100%
+  ); /* @kind other */
+  --scrim-top: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--text-body) 55%, transparent) 0%,
+    transparent 100%
+  ); /* @kind other */
+  --blur-bar: blur(12px); /* @kind other */ /* sticky header + WhatsApp bar */
+}

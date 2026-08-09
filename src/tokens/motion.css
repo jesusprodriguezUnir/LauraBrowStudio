@@ -1,0 +1,27 @@
+/* LauraBrowStudio — motion.
+   Slow, calm, no bounce. Everything is a fade or a small rise. */
+:root {
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */ /* reveals */
+  --ease-standard: ease; /* @kind other */
+
+  --dur-hover: 180ms; /* @kind other */   /* nav links, text colour */
+  --dur-ui: 200ms; /* @kind other */      /* icon rotation */
+  --dur-transition: 300ms; /* @kind other */ /* buttons, chips, header state */
+  --dur-fade: 500ms; /* @kind other */    /* image cross-fade, progress bar */
+  --dur-reveal: 700ms; /* @kind other */  /* scroll reveal + image zoom on hover */
+
+  --reveal-offset: 18px; /* @kind other */
+  --image-hover-scale: 1.03; /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-hover: 0.01ms; /* @kind other */
+    --dur-ui: 0.01ms; /* @kind other */
+    --dur-transition: 0.01ms; /* @kind other */
+    --dur-fade: 0.01ms; /* @kind other */
+    --dur-reveal: 0.01ms; /* @kind other */
+    --reveal-offset: 0px; /* @kind other */
+    --image-hover-scale: 1; /* @kind other */
+  }
+}

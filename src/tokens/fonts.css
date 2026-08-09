@@ -1,0 +1,9 @@
+/* Poppins is loaded from Google Fonts, exactly as the site does it
+   (src/routes/__root.tsx).
+
+   Cormorant Garamond is a SUBSTITUTION: the "LAURA" wordmark in the supplied
+   logo artwork is a high-contrast Didone-ish serif whose original file we do
+   not have. Cormorant Garamond Light is the closest Google Fonts match and is
+   used ONLY to typeset the wordmark when the PNG artwork cannot be used.
+   Prefer assets/logos/*.png for any real logo placement. */
+

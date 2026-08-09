@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../lib/site-config';
+
+const title = `Política de cookies | ${site.name}`;
+const description = "Información sobre el uso de cookies en la web del estudio de cejas.";
+---
+
+<Layout title={title} description={description}>
+    <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
+      <a href="/" class="nav-link">
+        &larr; Volver al inicio
+      </a>
+      <h1 class="section-title mt-6">Política de cookies</h1>
+      <div class="mt-8 space-y-6 text-[0.92rem] leading-relaxed text-muted-foreground">
+        <p class="placeholder-tag">Contenido pendiente de datos reales</p>
+        <p>
+          Esta primera versión de la web no utiliza cookies de analítica ni de publicidad. Si más adelante se incorporan
+          herramientas de medición, aquí se detallarán su finalidad, titularidad y duración, junto con un sistema de
+          consentimiento previo.
+        </p>
+        <ul class="space-y-1.5">
+          <li>Cookies técnicas: [PENDIENTE]</li>
+          <li>Cookies analíticas: [PENDIENTE]</li>
+          <li>Cookies publicitarias: [PENDIENTE]</li>
+        </ul>
+        <p>Para cualquier duda puedes escribir a {site.email}.</p>
+      </div>
+    </main>
+</Layout>

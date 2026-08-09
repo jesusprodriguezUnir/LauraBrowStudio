@@ -1,0 +1,111 @@
+/* LauraBrowStudio — colour system.
+   Values lifted verbatim from src/styles.css of the LauraBrowStudio site. */
+:root {
+  /* ── Base ramp: ivory → beige → mocha → charcoal ───────────────── */
+  --ivory-50: oklch(0.995 0.004 85);
+  --ivory-100: oklch(0.972 0.009 84);
+  --beige-200: oklch(0.945 0.014 80);
+  --beige-300: oklch(0.928 0.013 78);
+  --beige-400: oklch(0.895 0.022 45);
+  --line-300: oklch(0.878 0.013 76);
+  --warm-gray-500: oklch(0.505 0.016 55);
+  --mocha-500: oklch(0.455 0.038 40);
+  --charcoal-800: oklch(0.28 0.008 60);
+  --charcoal-900: oklch(0.255 0.012 50);
+
+  /* ── Logo palette ─────────────────────────────────────────────────
+     Sampled from the supplied LAURA BROW STUDIO artwork. Gold belongs to
+     the mark and its hairline rules — never to body text or buttons. */
+  --gold-400: #cfa760;
+  --gold-500: #b57f27;
+  --gold-600: #96681e;
+  --logo-mocha: #86523c;
+  --logo-ink: #21180d;
+  --ivory-warm: #f5ece6; /* the ivory field the logo is presented on */
+
+  /* Rose from the earlier brow-mark artwork; retired, kept for reference. */
+  --rose-400: oklch(0.706 0.055 22);
+
+  --danger-500: oklch(0.55 0.16 25);
+
+  /* ── Semantic surfaces ─────────────────────────────────────────── */
+  --surface-page: var(--ivory-100);
+  --surface-card: var(--ivory-50);
+  --surface-muted: var(--beige-200);
+  --surface-subtle: var(--beige-300);
+  --surface-accent: var(--beige-400);
+  --surface-inverse: var(--charcoal-900);
+  --surface-brand: var(--mocha-500);
+
+  /* ── Semantic text ─────────────────────────────────────────────── */
+  --text-body: var(--charcoal-900);
+  --text-muted: var(--warm-gray-500);
+  --text-accent: var(--mocha-500);
+  --text-on-brand: oklch(0.985 0.005 85);
+  --text-on-inverse: var(--ivory-100);
+  --text-gold: var(--gold-500);
+
+  /* ── Lines, rings, focus ───────────────────────────────────────── */
+  --border-hairline: var(--line-300);
+  --border-input: var(--line-300);
+  --border-on-inverse: color-mix(in oklab, var(--ivory-100) 20%, transparent);
+  --border-gold: color-mix(in oklab, var(--gold-500) 55%, transparent);
+  --ring: var(--mocha-500);
+
+  /* ── shadcn-compatible aliases (the site's own variable names) ──── */
+  --background: var(--ivory-100);
+  --foreground: var(--charcoal-900);
+  --card: var(--ivory-50);
+  --card-foreground: var(--charcoal-900);
+  --popover: var(--ivory-50);
+  --popover-foreground: var(--charcoal-900);
+  --primary: var(--mocha-500);
+  --primary-foreground: oklch(0.985 0.005 85);
+  --secondary: var(--beige-200);
+  --secondary-foreground: var(--charcoal-800);
+  --muted: var(--beige-300);
+  --muted-foreground: var(--warm-gray-500);
+  --accent: var(--beige-400);
+  --accent-foreground: oklch(0.28 0.01 40);
+  --destructive: var(--danger-500);
+  --destructive-foreground: oklch(0.985 0.005 85);
+  --border: var(--line-300);
+  --input: var(--line-300);
+}
+
+.dark {
+  --surface-page: oklch(0.205 0.006 60);
+  --surface-card: oklch(0.245 0.007 60);
+  --surface-muted: oklch(0.28 0.008 60);
+  --surface-subtle: oklch(0.3 0.008 60);
+  --surface-accent: oklch(0.36 0.02 30);
+  --surface-inverse: oklch(0.965 0.006 85);
+  --surface-brand: oklch(0.78 0.045 30);
+  --text-body: oklch(0.965 0.006 85);
+  --text-muted: oklch(0.755 0.012 75);
+  --text-accent: oklch(0.78 0.045 30);
+  --text-on-brand: oklch(0.22 0.008 60);
+  --text-on-inverse: oklch(0.205 0.006 60);
+  --text-gold: var(--gold-400);
+  --border-gold: color-mix(in oklab, var(--gold-400) 55%, transparent);
+  --border-hairline: oklch(1 0 0 / 14%);
+  --border-input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.78 0.045 30);
+
+  --background: oklch(0.205 0.006 60);
+  --foreground: oklch(0.965 0.006 85);
+  --card: oklch(0.245 0.007 60);
+  --card-foreground: oklch(0.965 0.006 85);
+  --popover: oklch(0.245 0.007 60);
+  --popover-foreground: oklch(0.965 0.006 85);
+  --primary: oklch(0.78 0.045 30);
+  --primary-foreground: oklch(0.22 0.008 60);
+  --secondary: oklch(0.28 0.008 60);
+  --secondary-foreground: oklch(0.955 0.006 85);
+  --muted: oklch(0.3 0.008 60);
+  --muted-foreground: oklch(0.755 0.012 75);
+  --accent: oklch(0.36 0.02 30);
+  --accent-foreground: oklch(0.97 0.006 85);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+}
