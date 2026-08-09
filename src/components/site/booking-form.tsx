@@ -162,7 +162,7 @@ export function BookingForm() {
             <label
               key={t}
               className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[0.78rem] transition-colors ${
-                technique === t ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:border-foreground"
+                technique === t ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"
               }`}
             >
               <input type="radio" value={t} className="sr-only" {...register("technique")} />
@@ -179,7 +179,7 @@ export function BookingForm() {
             <label
               key={slot}
               className={`cursor-pointer rounded-full border px-4 py-2 text-[0.78rem] transition-colors ${
-                watch("slot") === slot ? "border-foreground bg-foreground text-background" : "border-border text-muted-foreground hover:border-foreground"
+                watch("slot") === slot ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"
               }`}
             >
               <input type="radio" value={slot} className="sr-only" {...register("slot")} />
@@ -228,7 +228,7 @@ export function BookingForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 w-full rounded-full bg-foreground px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-background transition-colors duration-300 hover:bg-primary disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-6 w-full rounded-full bg-primary px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-primary-foreground transition-colors duration-300 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === "sending" ? "Enviando…" : "Solicitar cita"}
       </button>

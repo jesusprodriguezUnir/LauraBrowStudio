@@ -19,8 +19,8 @@ export function WhatsappCta({ message, children = "Reservar valoración", varian
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.78rem] uppercase tracking-[0.14em] transition-all duration-300",
         variant === "solid"
-          ? "bg-foreground text-background hover:bg-primary"
-          : "border border-border text-foreground hover:border-foreground",
+          ? "bg-primary text-primary-foreground hover:brightness-110 shadow-sm"
+          : "border border-primary text-primary hover:bg-primary hover:text-primary-foreground",
         className,
       )}
     >

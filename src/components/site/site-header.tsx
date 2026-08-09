@@ -72,7 +72,7 @@ export function SiteHeader() {
           </button>
           <WhatsappCta
             message={waMessages.general}
-            className="hidden bg-foreground text-background hover:bg-primary hover:text-background md:inline-flex"
+            className="hidden bg-primary text-primary-foreground hover:brightness-110 md:inline-flex"
           >
             Reservar cita
           </WhatsappCta>
@@ -82,7 +82,7 @@ export function SiteHeader() {
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
             aria-label="Consultar por WhatsApp"
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-foreground text-background md:hidden"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground md:hidden"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
           </a>
