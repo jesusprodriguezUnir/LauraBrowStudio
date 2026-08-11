@@ -34,7 +34,13 @@ export function ComparisonSlider({
         className="pointer-events-none absolute inset-y-0 w-px bg-background/90"
         style={{ left: `${value}%` }}
         aria-hidden="true"
-      />
+      >
+        <span className="absolute top-1/2 left-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-border bg-background text-foreground">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4">
+            <path d="m9 6-4 6 4 6M15 6l4 6-4 6" />
+          </svg>
+        </span>
+      </div>
       <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-background/85 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.16em]">
         {beforeLabel}
       </span>
@@ -48,7 +54,7 @@ export function ComparisonSlider({
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
         aria-label={`${beforeAlt} ${afterAlt} — desliza para comparar`}
-        className="absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent"
+        className="compare-range absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent"
       />
     </div>
   );

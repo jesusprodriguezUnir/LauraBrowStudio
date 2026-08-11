@@ -1,0 +1,21 @@
+---
+interface Props {
+  /** Kicker en versalitas sobre el título */
+  kicker: string;
+  /** El h1 de la página. Se escribe en frase normal: el CSS lo pone en caja alta. */
+  title: string;
+  intro?: string;
+}
+
+const { kicker, title, intro } = Astro.props;
+---
+
+<section class="pt-28 pb-14 md:pt-36 md:pb-20">
+  <div class="reveal mx-auto max-w-6xl px-5 md:px-8">
+    <p class="section-kicker">{kicker}</p>
+    <h1 class="section-title mt-4 max-w-3xl">{title}</h1>
+    {intro && (
+      <p class="mt-6 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">{intro}</p>
+    )}
+  </div>
+</section>

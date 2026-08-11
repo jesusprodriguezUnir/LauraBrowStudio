@@ -1,6 +1,6 @@
 ---
 import logoFull from "../../../logo.png";
-import { site, instagramUrl } from "../../lib/site-config";
+import { site, instagramUrl, waLink, waMessages } from "../../lib/site-config";
 
 const year = new Date().getFullYear();
 const legal = [
@@ -9,12 +9,18 @@ const legal = [
   { label: "Política de cookies", href: "/politica-de-cookies" },
 ];
 
-const contact = [
-  ["WhatsApp", site.phoneDisplay],
-  ["Teléfono", site.phoneDisplay],
-  ["Email", site.email],
-  ["Dirección", site.address],
-  ["Instagram", site.instagram],
+const waHref = waLink(waMessages.general);
+
+/** Un dato por fila, cada uno accionable. El teléfono aparecía dos veces
+ *  (como «WhatsApp» y como «Teléfono») con el mismo valor. */
+const contact: { label: string; value: string; href?: string; external?: boolean }[] = [
+  { label: "Teléfono", value: site.phoneDisplay, href: `tel:+${site.whatsappNumber}` },
+  { label: "WhatsApp", value: "Escribir por WhatsApp", href: waHref, external: waHref.startsWith("http") },
+  { label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { label: "Dirección", value: site.address },
+  ...(instagramUrl !== "#"
+    ? [{ label: "Instagram", value: `@${site.instagram}`, href: instagramUrl, external: true }]
+    : []),
 ];
 ---
 
@@ -27,9 +33,20 @@ const contact = [
     <div>
       <p class="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-muted-foreground">Contacto</p>
       <ul class="mt-3 space-y-1.5 text-[0.9375rem]">
-        {contact.map(([k, v]) => (
+        {contact.map(({ label, value, href, external }) => (
           <li class="text-muted-foreground">
-            <span class="text-muted-foreground/80">{k}:</span> <span class="text-foreground">{v}</span>
+            <span class="text-muted-foreground/80">{label}:</span>{" "}
+            {href ? (
+              <a
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                class="text-foreground transition-colors duration-300 hover:text-muted-foreground"
+              >
+                {value}
+              </a>
+            ) : (
+              <span class="text-foreground">{value}</span>
+            )}
           </li>
         ))}
       </ul>
@@ -47,20 +64,13 @@ const contact = [
       </ul>
     </div>
   </div>
-  <div class="mx-auto mt-12 flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 md:px-8">
-    <p class="border-t border-border pt-6 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted-foreground">
-      {site.city} · {site.country}
-    </p>
-    <p class="border-t border-border pt-6 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted-foreground">
-      Cejas · Micropigmentación · {year}
-    </p>
-    <p class="w-full border-t border-border pt-6 text-center font-mono text-[0.625rem] uppercase tracking-[0.14em] text-muted-foreground/70">
-      Web diseñada por <a href="https://webdespega.com" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-2 transition-colors duration-300 hover:text-foreground">webdespega.com</a>
-    </p>
+  <div class="mx-auto mt-12 max-w-6xl px-5 md:px-8">
+    <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-border pt-6 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-muted-foreground">
+      <p>{site.city} · {site.country} · {year}</p>
+      <p>Cejas · Micropigmentación</p>
+      <p class="text-muted-foreground/70">
+        Web diseñada por <a href="https://webdespega.com" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted underline-offset-2 transition-colors duration-300 hover:text-foreground">webdespega.com</a>
+      </p>
+    </div>
   </div>
-  {instagramUrl !== "#" && (
-    <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="sr-only">
-      Perfil de Instagram de {site.name}
-    </a>
-  )}
 </footer>

@@ -2,19 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import { site } from "../lib/site-config";
 import { SiteHeader } from "../components/site/site-header";
+import PageHeader from "../components/site/PageHeader.astro";
 import FaqSection from "../components/site/FaqSection.astro";
 import FinalCta from "../components/site/FinalCta.astro";
 import SiteFooter from "../components/site/SiteFooter.astro";
 import WhatsappBar from "../components/site/WhatsappBar.astro";
 
-const title = `Contacto y Preguntas Frecuentes | ${site.name}`;
-const description = "Contacta con LauraBrowStudio en Palencia. Solicita tu valoración gratuita para microblading o resuelve tus dudas en nuestra sección de FAQ.";
+const title = `Contacto y preguntas frecuentes | ${site.name}`;
+const description =
+  "Contacta con LauraBrowStudio en Palencia. Pide tu valoración de cejas por WhatsApp o resuelve tus dudas en las preguntas frecuentes.";
 ---
 
-<Layout title={title} description={description} includeFaq>
+<Layout title={title} description={description} path="/contacto" includeFaq>
   <div class="min-h-screen" id="contenido">
     <SiteHeader client:load />
-    <main class="pt-16 md:pt-24">
+    <main>
+      <PageHeader
+        kicker="Contacto"
+        title="Pide tu valoración"
+        intro="Cuéntanos qué te gustaría cambiar y te orientamos sobre la técnica que puede encajar contigo. Sin compromiso."
+      />
       <FinalCta />
       <FaqSection />
     </main>

@@ -5,24 +5,33 @@ import { cn } from "@/lib/utils";
 type Props = {
   message: string;
   children?: React.ReactNode;
-  variant?: "solid" | "outline";
+  variant?: "solid" | "outline" | "inverse";
+  size?: "default" | "sm" | "lg";
   className?: string;
 };
 
-export function WhatsappCta({ message, children = "Reservar valoración", variant = "solid", className }: Props) {
+const variants = {
+  solid: "btn-solid",
+  outline: "btn-outline",
+  inverse: "btn-inverse",
+} as const;
+
+const sizes = { sm: "btn-sm", default: "", lg: "btn-lg" } as const;
+
+export function WhatsappCta({
+  message,
+  children = "Reservar valoración",
+  variant = "solid",
+  size = "default",
+  className,
+}: Props) {
   const href = waLink(message);
   const external = href.startsWith("http");
   return (
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.78rem] uppercase tracking-[0.14em] transition-all duration-300",
-        variant === "solid"
-          ? "bg-primary text-primary-foreground hover:brightness-110 shadow-sm"
-          : "border border-primary text-primary hover:bg-primary hover:text-primary-foreground",
-        className,
-      )}
+      className={cn("btn", sizes[size], variants[variant], className)}
     >
       <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
       <span>{children}</span>

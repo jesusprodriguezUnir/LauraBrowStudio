@@ -53,15 +53,15 @@ const techniques = [
 
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {techniques.map((t) => (
-        <article class="reveal group flex flex-col overflow-hidden rounded-2xl bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-6">
-          <div class="image-frame aspect-[16/11] overflow-hidden rounded-xl">
+        <article id={t.id} class="reveal flex flex-col rounded-sm border border-border bg-card p-5 transition-colors duration-300 hover:border-foreground/25 md:p-6">
+          <div class="image-frame aspect-[16/11]">
             <Image
               src={t.image}
               alt={`${t.name} — micropigmentación de cejas en Palencia`}
               widths={[420, 640]}
               sizes="(min-width: 768px) 29vw, 92vw"
               loading="lazy"
-              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              class="h-full w-full object-cover"
             />
           </div>
           <div class="mt-6 flex flex-wrap gap-1.5">
@@ -73,12 +73,12 @@ const techniques = [
             </span>
           </div>
           <h3 class="mt-4 font-display text-2xl tracking-tight">{t.name}</h3>
-          <p class="mt-2 text-[0.78rem] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-            Ideal para: {t.ideal}
+          <p class="mt-2 text-[0.85rem] leading-relaxed text-muted-foreground">
+            <span class="text-[0.6rem] uppercase tracking-[0.16em]">Ideal para</span><br />{t.ideal}
           </p>
           <p class="mt-3 text-[0.88rem] leading-relaxed text-muted-foreground">{t.description}</p>
           <p class="mt-4 border-t border-border pt-4 text-[0.8rem] text-muted-foreground">
-            Presupuesto tras valoración · {t.id === "pelo-a-pelo" ? "incluye retoque" : "retoque incluido"}
+            Presupuesto tras valoración · retoque incluido
           </p>
           <div class="mt-auto pt-6">
             <WhatsappCta message={waMessages.service(t.name)} size="sm" variant="outline" class="w-full">

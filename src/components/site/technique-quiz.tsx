@@ -149,7 +149,7 @@ export function TechniqueQuiz() {
                 type="button"
                 disabled={answered < total}
                 onClick={() => setDone(true)}
-                className="mt-9 w-full rounded-full bg-primary px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-primary-foreground transition-colors duration-300 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-35"
+                className="btn btn-solid btn-lg mt-9 w-full disabled:cursor-not-allowed disabled:opacity-35"
               >
                 Ver orientación
               </button>
@@ -157,7 +157,7 @@ export function TechniqueQuiz() {
           ) : (
             <div className="text-center">
               <p className="section-kicker">Orientación inicial</p>
-              <h3 className="mt-4 font-display text-4xl tracking-tight md:text-5xl">{recommendation}</h3>
+              <h3 className="section-title mt-4">{recommendation}</h3>
               <p className="mx-auto mt-5 max-w-md text-[0.9rem] leading-relaxed text-muted-foreground">
                 {explanations[recommendation]}
               </p>
@@ -169,7 +169,7 @@ export function TechniqueQuiz() {
                 <button
                   type="button"
                   onClick={reset}
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-[0.78rem] uppercase tracking-[0.14em] transition-colors duration-300 hover:border-foreground"
+                  className="btn btn-ghost"
                 >
                   <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" /> Repetir test
                 </button>

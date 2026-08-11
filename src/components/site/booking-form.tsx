@@ -20,6 +20,13 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
+declare global {
+  interface Window {
+    __lbsTurnstileCb?: (token: string) => void;
+    __lbsTurnstileExpired?: () => void;
+  }
+}
+
 const today = new Date(Date.now() + 86400000).toISOString().split("T")[0];
 const minDate = today;
 
@@ -30,6 +37,8 @@ const errorBase = "mt-1 text-[0.72rem] text-destructive";
 
 export function BookingForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  /** Cómo se cerró el envío, para no prometer un WhatsApp que no se abrió. */
+  const [sentVia, setSentVia] = useState<"form" | "whatsapp">("form");
   const [turnstileToken, setTurnstileToken] = useState("");
   const siteKey = site.turnstileSiteKey;
 
@@ -46,16 +55,25 @@ export function BookingForm() {
 
   useEffect(() => {
     if (!showCaptcha) return;
-    const existing = document.querySelector('script[data-astro-turnstile]');
-    if (!existing) {
+    // `data-callback` sólo acepta el nombre de una función global, así que la
+    // publicamos aquí. Sin esto el token nunca llegaba a estado y onSubmit
+    // se cortaba en silencio en cuanto había sitekey configurada.
+    window.__lbsTurnstileCb = (token: string) => setTurnstileToken(token);
+    window.__lbsTurnstileExpired = () => setTurnstileToken("");
+
+    if (!document.querySelector("script[data-lbs-turnstile]")) {
       const s = document.createElement("script");
       s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
       s.async = true;
       s.defer = true;
-      s.setAttribute("data-astro-turnstile", "true");
-      s.setAttribute("onload", "window.__lbsOnTurnstileLoad && window.__lbsOnTurnstileLoad()");
+      s.setAttribute("data-lbs-turnstile", "true");
       document.head.appendChild(s);
     }
+
+    return () => {
+      delete window.__lbsTurnstileCb;
+      delete window.__lbsTurnstileExpired;
+    };
   }, [showCaptcha]);
 
   const onSubmit = handleSubmit(async (values) => {
@@ -64,6 +82,7 @@ export function BookingForm() {
     if (site.formEndpoint) {
       if (siteKey && !turnstileToken) {
         setStatus("idle");
+        toast.error("Completa la verificación anti-robots antes de enviar.");
         return;
       }
       try {
@@ -73,6 +92,7 @@ export function BookingForm() {
           body: JSON.stringify({ ...values, turnstile: turnstileToken, source: "laurabrowstudio" }),
         });
         if (!res.ok) throw new Error("server");
+        setSentVia("form");
         setStatus("done");
         reset();
         setTurnstileToken("");
@@ -99,6 +119,7 @@ export function BookingForm() {
     ].filter(Boolean);
     const href = waLink(`${waMessages.general}\n\n${lines.join("\n")}`);
     if (href.startsWith("http")) window.open(href, "_blank", "noopener,noreferrer");
+    setSentVia("whatsapp");
     setStatus("done");
     reset();
   });
@@ -107,14 +128,16 @@ export function BookingForm() {
     return (
       <div className="rounded-sm border border-border bg-background p-8 text-center">
         <CheckCircle2 className="mx-auto h-8 w-8 text-primary" aria-hidden="true" />
-        <h3 className="mt-4 font-display text-2xl tracking-tight">¡Solicitud preparada!</h3>
+        <h3 className="mt-4 font-display text-2xl tracking-tight">Solicitud enviada</h3>
         <p className="mx-auto mt-3 max-w-sm text-[0.88rem] leading-relaxed text-muted-foreground">
-          Te hemos enviado tu solicitud por WhatsApp (o por email) y te confirmaremos la cita en cuanto podamos.
+          {sentVia === "whatsapp"
+            ? "Hemos abierto WhatsApp con tu solicitud preparada. Envíala y te confirmamos la cita en cuanto podamos."
+            : "Hemos recibido tus datos y te confirmamos la cita en cuanto podamos."}
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-[0.78rem] uppercase tracking-[0.14em] transition-colors hover:border-foreground"
+          className="btn btn-ghost mt-6"
         >
           Enviar otra solicitud
         </button>
@@ -161,7 +184,7 @@ export function BookingForm() {
           {(["Microblading pelo a pelo", "Microshading / Powder", "Técnica mixta", "Aún no lo sé"] as const).map((t) => (
             <label
               key={t}
-              className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[0.78rem] transition-colors ${
+              className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[0.78rem] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring ${
                 technique === t ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"
               }`}
             >
@@ -178,7 +201,7 @@ export function BookingForm() {
           {(["Mañana", "Tarde", "Cualquiera"] as const).map((slot) => (
             <label
               key={slot}
-              className={`cursor-pointer rounded-full border px-4 py-2 text-[0.78rem] transition-colors ${
+              className={`cursor-pointer rounded-full border px-4 py-2 text-[0.78rem] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring ${
                 watch("slot") === slot ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"
               }`}
             >
@@ -216,7 +239,8 @@ export function BookingForm() {
             className="cf-turnstile"
             data-sitekey={siteKey}
             data-callback="__lbsTurnstileCb"
-            data-theme="light"
+            data-expired-callback="__lbsTurnstileExpired"
+            data-theme="auto"
             aria-label="Verificación anti-robots"
           />
           {!turnstileToken && status === "idle" && (
@@ -228,7 +252,7 @@ export function BookingForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 w-full rounded-full bg-primary px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.14em] text-primary-foreground transition-colors duration-300 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+        className="btn btn-solid btn-lg mt-6 w-full disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === "sending" ? "Enviando…" : "Solicitar cita"}
       </button>

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { site } from "../lib/site-config";
 import { SiteHeader } from "../components/site/site-header";
+import PageHeader from "../components/site/PageHeader.astro";
 import { BeforeAfter } from "../components/site/before-after";
 import HealedResults from "../components/site/HealedResults.astro";
 import Reviews from "../components/site/Reviews.astro";
@@ -9,14 +10,20 @@ import FinalCta from "../components/site/FinalCta.astro";
 import SiteFooter from "../components/site/SiteFooter.astro";
 import WhatsappBar from "../components/site/WhatsappBar.astro";
 
-const title = `Resultados y Casos de Éxito | ${site.name}`;
-const description = "Explora nuestros casos de éxito y fotos de antes y después de microblading. Mira cómo quedan los resultados curados y cicatrizados tras unos meses.";
+const title = `Resultados de microblading | ${site.name}`;
+const description =
+  "Fotos de antes y después de microblading en Palencia, con el resultado ya cicatrizado. Mira cómo evoluciona el pigmento en los meses posteriores.";
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} path="/resultados">
   <div class="min-h-screen" id="contenido">
     <SiteHeader client:load />
-    <main class="pt-16 md:pt-24">
+    <main>
+      <PageHeader
+        kicker="Resultados"
+        title="Antes, después y, sobre todo, cicatrizado"
+        intro="Mostramos las dos fases del tratamiento. El día de la sesión el pigmento se ve más intenso; el resultado real aparece semanas más tarde."
+      />
       <BeforeAfter client:visible />
       <HealedResults />
       <Reviews />

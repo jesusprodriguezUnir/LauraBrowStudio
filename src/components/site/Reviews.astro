@@ -34,8 +34,8 @@ const reviews = [
             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
           </svg>
           <p class="mt-5 flex-1 font-display text-xl leading-snug text-muted-foreground">{r.text}</p>
-          <footer class="mt-6 flex items-center justify-between">
-            <span class="text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground">{r.name}</span>
+          <footer class="mt-6 flex flex-wrap items-center justify-between gap-2">
+            <span class="placeholder-tag">{r.name}</span>
             <span class="text-[0.62rem] uppercase tracking-[0.16em] text-primary">{r.technique}</span>
           </footer>
         </blockquote>

@@ -27,9 +27,11 @@ interface Props {
   image?: string;
   /** Incluir el FAQPage JSON-LD (visible en la home) */
   includeFaq?: boolean;
+  /** Excluir la página del índice (404 y similares) */
+  noindex?: boolean;
 }
 
-const { title, description, path = "/", image, includeFaq = false } = Astro.props;
+const { title, description, path = "/", image, includeFaq = false, noindex = false } = Astro.props;
 
 const canonical = new URL(path, site.url).toString();
 const ogImage = image ? new URL(image, site.url).toString() : new URL("/icon-512.png", site.url).toString();
@@ -113,7 +115,7 @@ import WhatsappFloating from "../components/site/WhatsappFloating.astro";
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3ede2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#201b1a" />
     <link rel="manifest" href="/site.webmanifest" />

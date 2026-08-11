@@ -59,7 +59,11 @@
   --card-foreground: var(--charcoal-900);
   --popover: var(--ivory-50);
   --popover-foreground: var(--charcoal-900);
-  --primary: var(--gold-500);
+  /* El dorado pertenece al logo y sus filetes (--text-gold / --border-gold).
+     Lo accionable usa mocha: sobre ivory da ~8:1 de contraste, el dorado
+     apenas llegaba a 3:1 y el botón «Reservar» se perdía contra el fondo. */
+  --primary: var(--mocha-500);
+  --primary-hover: oklch(0.375 0.042 40);
   --primary-foreground: oklch(0.985 0.005 85);
   --secondary: var(--beige-200);
   --secondary-foreground: var(--charcoal-800);
@@ -98,7 +102,8 @@
   --card-foreground: oklch(0.965 0.006 85);
   --popover: oklch(0.245 0.007 60);
   --popover-foreground: oklch(0.965 0.006 85);
-  --primary: var(--gold-400);
+  --primary: oklch(0.78 0.045 30);
+  --primary-hover: oklch(0.86 0.04 30);
   --primary-foreground: oklch(0.22 0.008 60);
   --secondary: oklch(0.28 0.008 60);
   --secondary-foreground: oklch(0.955 0.006 85);

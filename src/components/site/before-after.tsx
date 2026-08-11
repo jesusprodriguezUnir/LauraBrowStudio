@@ -1,7 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import before1 from "@/assets/case-before-1.jpg?url";
 import design1 from "@/assets/case-design-1.jpg?url";
 import result1 from "@/assets/case-result-1.jpg?url";
@@ -58,16 +57,15 @@ function CaseCard({
       >
         <img key={src} src={src} alt="" loading="lazy" width={1024} height={1280} className="h-full w-full object-cover transition-opacity duration-500" />
       </button>
-      <div role="tablist" aria-label={`Fases del caso ${item.id}`} className="mt-3 flex flex-wrap gap-1.5">
+      <div className="mt-3 flex flex-wrap gap-1.5">
         {tabs.map((t) => (
           <button
             key={t.key}
             type="button"
-            role="tab"
-            aria-selected={tab === t.key}
+            aria-pressed={tab === t.key}
             onClick={() => setTab(t.key)}
             className={`rounded-full px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
-              tab === t.key ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground"
+              tab === t.key ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground hover:border-foreground"
             }`}
           >
             {t.label}
@@ -85,22 +83,42 @@ function CaseCard({
 
 export function BeforeAfter() {
   const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
-  
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", dragFree: true }, [
-    Autoplay({ delay: 5000, stopOnInteraction: true }),
-  ]);
+
+  // Sin autoplay: la marca solo admite el reveal en scroll, y un carrusel que
+  // se mueve solo no respetaría prefers-reduced-motion.
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", dragFree: true });
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
+  // El lightbox se cierra con Escape y bloquea el scroll del fondo mientras
+  // está abierto; antes solo se podía cerrar con el ratón.
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [lightbox]);
 
   return (
     <section id="resultados" className="border-t border-border bg-secondary/40 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="reveal max-w-2xl">
           <p className="section-kicker">Antes y después</p>
-          <h2 className="section-title mt-4">Resultados que hablan por sí solos</h2>
+          <h2 className="section-title mt-4">El punto de partida importa</h2>
           <p className="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
-            Cada ceja se diseña de forma individual para respetar tus facciones y conseguir un resultado natural.
+            Cada ceja se diseña de forma individual, así que el mismo tratamiento no da el mismo resultado en dos
+            personas. Estas son las fases por las que pasa cada caso.
+          </p>
+          <p className="mt-4">
+            <span className="placeholder-tag">Fotografías provisionales</span>
           </p>
         </div>
 
@@ -115,8 +133,7 @@ export function BeforeAfter() {
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-primary">Comparador</p>
             <h3 className="section-title mt-3 !text-[clamp(1.7rem,3.6vw,2.5rem)]">Desliza para ver el cambio</h3>
             <p className="mt-4 text-[0.9rem] leading-relaxed text-muted-foreground">
-              Arrastra sobre la imagen para comparar el punto de partida con el resultado. Las fotografías que
-              aparecen ahora son provisionales y se sustituirán por casos reales del estudio.
+              Arrastra sobre la imagen para comparar el punto de partida con el resultado.
             </p>
             <WhatsappCta message={waMessages.general} variant="outline" className="mt-7">
               Consultar mi caso
@@ -137,17 +154,19 @@ export function BeforeAfter() {
           
           <button
             type="button"
-            className="absolute left-4 top-1/3 z-10 grid h-10 w-10 -translate-y-1/2 -translate-x-1/2 place-items-center rounded-full bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100 disabled:opacity-0"
+            aria-label="Ver casos anteriores"
             onClick={scrollPrev}
+            className="absolute left-0 top-[30%] z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100 md:-left-2"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
           </button>
           <button
             type="button"
-            className="absolute right-4 top-1/3 z-10 grid h-10 w-10 -translate-y-1/2 translate-x-1/2 place-items-center rounded-full bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100 disabled:opacity-0"
+            aria-label="Ver más casos"
             onClick={scrollNext}
+            className="absolute right-0 top-[30%] z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-border bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 focus-visible:opacity-100 md:-right-2"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       </div>
