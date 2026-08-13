@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* El tema oscuro es de clase (`.dark` en <html>), no de prefers-color-scheme.
+   Sin esto, dark:invert / dark:hidden siguen al SO y no al interruptor. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "./tokens/colors.css";
 @import "./tokens/typography.css";
 @import "./tokens/spacing.css";

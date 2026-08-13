@@ -15,7 +15,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection { background: color-mix(in oklab, var(--text-accent) 25%, transparent); }
-img { display: block; max-width: 100%; }
+/* max-width only: `display:block` already lives in Tailwind preflight
+   (layered), so utilities like `hidden` can override it. An unlayered
+   `img { display:block }` was beating `.hidden` and showing both logo tones. */
+img { max-width: 100%; }
+
+/* Lockups: swap by `.dark` class, not Tailwind dark:, so it cannot lose
+   to preflight or to prefers-color-scheme. */
+.brand-light { display: block; }
+.brand-dark { display: none; }
+.dark .brand-light { display: none; }
+.dark .brand-dark { display: block; }
 
 a { color: var(--text-accent); text-decoration: none; transition: color var(--dur-hover) var(--ease-standard); }
 a:hover { color: var(--text-body); }

@@ -1,5 +1,7 @@
 ---
-import logoFull from "../../../logo.png";
+import { Image } from "astro:assets";
+import stackMocha from "../../assets/logos/logo-stack-mocha.png";
+import stackIvory from "../../assets/logos/logo-stack-ivory.png";
 import { site, instagramUrl, waLink, waMessages } from "../../lib/site-config";
 
 const year = new Date().getFullYear();
@@ -27,7 +29,21 @@ const contact: { label: string; value: string; href?: string; external?: boolean
 <footer class="border-t border-border bg-surface-muted py-14 pb-28 text-foreground md:pb-14">
   <div class="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1.2fr_1fr_1fr] md:px-8">
     <div>
-      <img src={logoFull.src} alt={site.name} width={480} height={480} loading="lazy" class="h-24 w-auto max-w-[18rem] object-contain" />
+      <Image
+        src={stackMocha}
+        alt={site.name}
+        height={96}
+        densities={[1, 2]}
+        class="brand-light h-24 w-auto"
+      />
+      <Image
+        src={stackIvory}
+        alt=""
+        height={96}
+        densities={[1, 2]}
+        class="brand-dark h-24 w-auto"
+        aria-hidden="true"
+      />
       <p class="mt-4 max-w-xs text-[0.875rem] leading-relaxed text-muted-foreground">{site.claim}</p>
     </div>
     <div>

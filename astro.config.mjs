@@ -13,30 +13,32 @@ function generateLogoAssets() {
     hooks: {
       'astro:config:setup': async () => {
         try {
+          const emblem = path.resolve('src/assets/logos/emblem-512.png');
           const rootLogo = path.resolve('logo.png');
-          if (!fs.existsSync(rootLogo)) return;
+          const source = fs.existsSync(emblem) ? emblem : rootLogo;
+          if (!fs.existsSync(source)) return;
 
           const publicDir = path.resolve('public');
-          const assetsDir = path.resolve('src/assets');
           if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
-          if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir, { recursive: true });
 
-          fs.copyFileSync(rootLogo, path.join(assetsDir, 'brow-mark.png'));
+          const ivory = { r: 245, g: 236, b: 230, alpha: 1 };
+          const clear = { r: 0, g: 0, b: 0, alpha: 0 };
 
-          await sharp(rootLogo)
-            .resize(512, 512, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          // El emblema, no el lockup primary: a 64–192 px las taglines se pierden.
+          await sharp(source)
+            .resize(512, 512, { fit: 'contain', background: clear })
             .png()
             .toFile(path.join(publicDir, 'icon-512.png'));
-          await sharp(rootLogo)
-            .resize(192, 192, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          await sharp(source)
+            .resize(192, 192, { fit: 'contain', background: clear })
             .png()
             .toFile(path.join(publicDir, 'icon-192.png'));
-          await sharp(rootLogo)
-            .resize(180, 180, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          await sharp(source)
+            .resize(180, 180, { fit: 'contain', background: ivory })
             .png()
             .toFile(path.join(publicDir, 'apple-touch-icon.png'));
-          await sharp(rootLogo)
-            .resize(64, 64, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          await sharp(source)
+            .resize(64, 64, { fit: 'contain', background: clear })
             .png()
             .toFile(path.join(publicDir, 'favicon.png'));
         } catch (err) {

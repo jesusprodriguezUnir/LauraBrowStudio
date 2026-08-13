@@ -33,8 +33,12 @@
   --band-y-cta: var(--space-24);   /* the closing CTA breathes more */
   --band-y-cta-md: var(--space-32);
 
-  --header-h: 72px;
-  --header-h-md: 84px;
+  --header-h: 60px;
+  --header-h-md: 72px;
   --hero-min-h: 92svh; /* @kind spacing */
   --tap-target: 44px; /* h-11 — every mobile control */
+}
+
+@media (min-width: 768px) {
+  :root { --header-h: var(--header-h-md); }
 }

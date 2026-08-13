@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, X, MessageCircle, Sun, Moon } from "lucide-react";
-import logoMain from "@/assets/brow-mark.png?url";
-import { site, waLink, waMessages } from "@/lib/site-config";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { site, waMessages } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import { BrandLockup } from "./brand-lockup";
 import { WhatsappCta } from "./cta";
 
 const nav = [
@@ -22,9 +22,22 @@ export function SiteHeader() {
   // hidratar: leemos de ahí en vez de asumir tema claro, que dejaba el icono
   // y el aria-label invertidos en la primera carga en oscuro.
   useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
-    setCurrent(window.location.pathname.replace(/\/$/, "") || "/");
+    const sync = () => {
+      setDark(document.documentElement.classList.contains("dark"));
+      setCurrent(window.location.pathname.replace(/\/$/, "") || "/");
+      setOpen(false);
+    };
+    sync();
+    document.addEventListener("astro:page-load", sync);
+    return () => document.removeEventListener("astro:page-load", sync);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   const toggleTheme = () => {
     const next = !document.documentElement.classList.contains("dark");
@@ -39,23 +52,9 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 text-foreground backdrop-blur-md transition-colors duration-300">
-      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-8">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 md:gap-4 md:px-8 md:py-3.5">
         <a href="/" className="flex min-w-0 items-center" aria-label={`${site.name}, inicio`}>
-          <img
-            src={logoMain}
-            alt=""
-            width={480}
-            height={480}
-            className="h-16 w-auto max-w-[14rem] object-contain transition duration-500 md:h-20 md:max-w-[16rem] dark:invert dark:brightness-200"
-          />
-          <span className="sr-only">
-            <span className="block truncate text-base font-semibold uppercase tracking-[0.08em] md:text-lg">
-              {site.name}
-            </span>
-            <span className="mt-0.5 block truncate text-[0.6rem] uppercase tracking-[0.22em] text-muted-foreground">
-              Microblading · {site.city}
-            </span>
-          </span>
+          <BrandLockup />
         </a>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -85,19 +84,11 @@ export function SiteHeader() {
           >
             {dark ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
           </button>
-          <WhatsappCta message={waMessages.general} size="sm" className="hidden md:inline-flex">
-            Reservar cita
-          </WhatsappCta>
-          <a
-            href={waLink(waMessages.general)}
-            {...(waLink(waMessages.general).startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-            aria-label="Consultar por WhatsApp"
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground md:hidden"
-          >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="hidden md:contents">
+            <WhatsappCta message={waMessages.general} size="sm">
+              Reservar cita
+            </WhatsappCta>
+          </div>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

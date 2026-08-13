@@ -11,7 +11,7 @@ const stats = [
 ];
 ---
 
-<section id="inicio" class="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+<section id="inicio" class="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-28">
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--surface-muted),transparent_60%)] opacity-70"></div>
   <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-[1.05fr_0.95fr] md:px-8">
     <div class="reveal max-w-3xl">
@@ -33,7 +33,7 @@ const stats = [
         {stats.map(([label, value]) => (
           <div>
             <dt class="text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</dt>
-            <dd class="mt-1 font-display text-xl tracking-tight">{value}</dd>
+            <dd class="mt-1 font-display text-lg tracking-tight md:text-xl">{value}</dd>
           </div>
         ))}
       </dl>
