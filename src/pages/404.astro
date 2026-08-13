@@ -4,7 +4,7 @@ import { site, waMessages } from "../lib/site-config";
 import WhatsappCta from "../components/site/WhatsappCta.astro";
 
 const title = `Página no encontrada | ${site.name}`;
-const description = "La página que buscas no existe. Vuelve al inicio o escríbenos por WhatsApp.";
+const description = "La página que buscas no existe. Vuelve al inicio o escríbeme por WhatsApp.";
 ---
 
 <Layout title={title} description={description} path="/404" noindex>
@@ -12,8 +12,7 @@ const description = "La página que buscas no existe. Vuelve al inicio o escríb
     <p class="font-mono text-[0.7rem] uppercase tracking-[0.3em] text-primary">Error 404</p>
     <h1 class="display-xl mt-6">Esta página no existe</h1>
     <p class="mt-6 max-w-md text-[0.95rem] leading-relaxed text-muted-foreground">
-      Puede que el enlace haya cambiado o que la página se haya movido. Puedes volver al inicio o escribirnos
-      directamente por WhatsApp.
+      Puede que el enlace haya cambiado o que la página se haya movido. Vuelve al inicio o escríbeme por WhatsApp.
     </p>
     <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row">
       <a href="/" class="btn btn-solid">Volver al inicio</a>

@@ -22,10 +22,10 @@ type Case = {
 };
 
 const cases: Case[] = [
-  { id: "01", technique: "Microblading", outcome: "Resultado natural", before: before1, design: design1, result: result1 },
-  { id: "02", technique: "Microblading", outcome: "Definición pelo a pelo", before: before2, design: design1, result: result2 },
-  { id: "03", technique: "Microblading", outcome: "Natural y simétrico", before: before1, design: design1, result: healedHealed },
-  { id: "04", technique: "Microblading", outcome: "Recuperación de forma", before: before2, design: design1, result: browResult },
+  { id: "01", technique: "Microblading", outcome: "Más densidad en ceja fina", before: before1, design: design1, result: result1 },
+  { id: "02", technique: "Microblading", outcome: "Forma a partir del vello", before: before2, design: design1, result: result2 },
+  { id: "03", technique: "Microblading", outcome: "Equilibrio entre ambas cejas", before: before1, design: design1, result: healedHealed },
+  { id: "04", technique: "Microblading", outcome: "Cola y arco más definidos", before: before2, design: design1, result: browResult },
 ];
 
 const tabs = [
@@ -114,8 +114,8 @@ export function BeforeAfter() {
           <p className="section-kicker">Antes y después</p>
           <h2 className="section-title mt-4">El punto de partida importa</h2>
           <p className="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
-            Cada ceja se diseña de forma individual, así que el mismo tratamiento no da el mismo resultado en dos
-            personas. Estas son las fases por las que pasa cada caso.
+            El mismo tratamiento no da el mismo resultado en dos personas. Diseño cada ceja
+            sobre lo que ya hay: vello, huecos y forma del rostro.
           </p>
           <p className="mt-4">
             <span className="placeholder-tag">Fotografías provisionales</span>
@@ -134,6 +134,7 @@ export function BeforeAfter() {
             <h3 className="section-title mt-3 !text-[clamp(1.7rem,3.6vw,2.5rem)]">Desliza para ver el cambio</h3>
             <p className="mt-4 text-[0.9rem] leading-relaxed text-muted-foreground">
               Arrastra sobre la imagen para comparar el punto de partida con el resultado.
+              Las fotos son provisionales hasta que estén los casos del estudio.
             </p>
             <WhatsappCta message={waMessages.general} variant="outline" className="mt-7">
               Consultar mi caso

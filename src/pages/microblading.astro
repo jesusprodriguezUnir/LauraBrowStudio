@@ -7,28 +7,30 @@ import MicrobladingInfo from "../components/site/MicrobladingInfo.astro";
 import { TechniqueQuiz } from "../components/site/technique-quiz";
 import Process from "../components/site/Process.astro";
 import Aftercare from "../components/site/Aftercare.astro";
+import FaqSection from "../components/site/FaqSection.astro";
 import FinalCta from "../components/site/FinalCta.astro";
 import SiteFooter from "../components/site/SiteFooter.astro";
 import WhatsappBar from "../components/site/WhatsappBar.astro";
 
-const title = `Microblading en ${site.city}: técnicas y proceso | ${site.name}`;
+const title = `Microblading en ${site.city}: qué es, proceso y cuidados | ${site.name}`;
 const description =
-  "Qué es el microblading, en qué se diferencia del microshading y de la técnica mixta, cómo es el proceso paso a paso y qué cuidados necesita después.";
+  "Qué es el microblading pelo a pelo, para quién encaja, cómo es la sesión en Palencia y qué cuidados necesita después.";
 ---
 
-<Layout title={title} description={description} path="/microblading">
+<Layout title={title} description={description} path="/microblading" includeFaq>
   <div class="min-h-screen" id="contenido">
     <SiteHeader client:load />
     <main>
       <PageHeader
-        kicker="Microblading"
-        title="La técnica, paso a paso"
-        intro="Qué es exactamente, para quién encaja, cómo es la sesión y qué cuidados necesita después. Sin promesas de más."
+        kicker="Microblading en Palencia"
+        title="La técnica, sin rodeos"
+        intro="Qué es, para quién encaja, cómo es la sesión y qué ocurre después. Si no es para ti, también te lo digo."
       />
       <MicrobladingInfo />
       <TechniqueQuiz client:visible />
       <Process />
       <Aftercare />
+      <FaqSection />
       <FinalCta />
     </main>
     <SiteFooter />

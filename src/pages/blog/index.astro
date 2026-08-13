@@ -9,17 +9,17 @@ const posts = (await getCollection("blog")).sort(
 
 const title = `Blog de microblading en Palencia | ${site.name}`;
 const description =
-  "Guías de microblading, cuidados de la cicatrización y diferencias entre técnicas, escritas por el estudio de cejas en Palencia.";
+  "Guías de microblading y cuidados de la cicatrización, escritas desde el estudio de Palencia.";
 ---
 
 <Layout title={title} description={description} path="/blog">
   <main class="mx-auto max-w-3xl px-5 py-20 md:px-8">
     <a href="/" class="nav-link">&larr; Volver al inicio</a>
     <p class="section-kicker mt-8">Guías</p>
-    <h1 class="section-title mt-3">Blog del estudio</h1>
+    <h1 class="section-title mt-3">Guías de microblading</h1>
     <p class="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">
-      Explicamos cómo funciona el microblading sin tecnicismos: qué esperar de la cicatrización, cómo elegir
-      técnica y todo lo que olvidamos preguntar antes de la cita.
+      Cómo funciona el tratamiento, qué esperar de la cicatrización y las dudas que más se
+      repiten antes de pedir cita.
     </p>
 
     <div class="mt-12 divide-y divide-border border-t border-border">

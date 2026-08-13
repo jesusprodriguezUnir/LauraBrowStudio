@@ -3,56 +3,60 @@ import { RotateCcw } from "lucide-react";
 import { waMessages } from "@/lib/site-config";
 import { WhatsappCta } from "./cta";
 
-type Technique = "Microblading" | "Shading" | "Técnica mixta" | "Valoración personalizada";
+type Verdict = "Encaja" | "Dudoso" | "Requiere valoración";
 
-type Option = { label: string; scores: Partial<Record<Technique, number>> };
+type Option = { label: string; score: number };
 
 const questions: { id: string; question: string; options: Option[] }[] = [
   {
     id: "estado",
     question: "¿Cómo son actualmente tus cejas?",
     options: [
-      { label: "Poco pobladas", scores: { Shading: 2, "Técnica mixta": 1 } },
-      { label: "Con zonas sin pelo", scores: { "Técnica mixta": 2, Shading: 1 } },
-      { label: "Bastante pobladas", scores: { Microblading: 2 } },
-      { label: "No estoy segura", scores: { "Valoración personalizada": 2 } },
+      { label: "Con zonas sin pelo", score: 2 },
+      { label: "Poco pobladas", score: 1 },
+      { label: "Bastante pobladas", score: 1 },
+      { label: "Casi no tengo cejas", score: -1 },
     ],
   },
   {
     id: "resultado",
     question: "¿Qué resultado buscas?",
     options: [
-      { label: "Muy natural", scores: { Microblading: 2 } },
-      { label: "Natural pero definido", scores: { "Técnica mixta": 2 } },
-      { label: "Más marcado", scores: { Shading: 2 } },
+      { label: "Muy natural", score: 2 },
+      { label: "Natural pero definido", score: 2 },
+      { label: "Más marcado", score: -1 },
+      { label: "No lo sé", score: 0 },
     ],
   },
   {
     id: "objetivo",
     question: "¿Qué te gustaría mejorar?",
     options: [
-      { label: "Quiero recuperar forma", scores: { "Técnica mixta": 1, Microblading: 1 } },
-      { label: "Quiero más densidad", scores: { Shading: 2 } },
-      { label: "Quiero más definición", scores: { "Técnica mixta": 2 } },
+      { label: "Recuperar forma", score: 2 },
+      { label: "Densidad en zonas vacías", score: 2 },
+      { label: "Más definición", score: 1 },
+      { label: "Relleno marcado", score: -1 },
     ],
   },
   {
     id: "piel",
     question: "¿Cómo describirías tu piel?",
     options: [
-      { label: "Normal o seca", scores: { Microblading: 2 } },
-      { label: "Mixta", scores: { "Técnica mixta": 1, Shading: 1 } },
-      { label: "Grasa", scores: { Shading: 2 } },
-      { label: "No lo sé", scores: { "Valoración personalizada": 1 } },
+      { label: "Normal o seca", score: 2 },
+      { label: "Mixta", score: 1 },
+      { label: "Grasa", score: -2 },
+      { label: "No lo sé", score: 0 },
     ],
   },
 ];
 
-const explanations: Record<Technique, string> = {
-  Microblading: "El acabado pelo a pelo suele ser la opción más natural cuando la piel y el vello lo permiten.",
-  Shading: "El sombreado aporta densidad y un acabado más definido, con un efecto maquillado.",
-  "Técnica mixta": "Combinar pelo a pelo y sombreado permite ganar densidad sin perder naturalidad.",
-  "Valoración personalizada": "Con la información disponible, lo más honesto es valorar tus cejas en persona.",
+const explanations: Record<Verdict, string> = {
+  Encaja:
+    "Por lo que cuentas, el microblading puede encajar: buscas un resultado natural y tu piel lo suele permitir. En la cita confirmo el diseño, el tono y si procedemos.",
+  Dudoso:
+    "Puede encajar, pero hay cosas que hay que ver en persona. En piel grasa o con zonas muy despobladas el trazo tiene límites, y te lo digo si veo que no es lo mejor para ti.",
+  "Requiere valoración":
+    "Con lo que has contado, lo honesto es verlo en persona. El microblading no siempre es la mejor opción, y también es mi trabajo decírtelo.",
 };
 
 export function TechniqueQuiz() {
@@ -62,24 +66,17 @@ export function TechniqueQuiz() {
   const total = questions.length;
   const answered = Object.keys(answers).length;
 
-  const recommendation: Technique = (() => {
-    const scores: Record<Technique, number> = {
-      Microblading: 0,
-      Shading: 0,
-      "Técnica mixta": 0,
-      "Valoración personalizada": 0,
-    };
+  const verdict: Verdict = (() => {
+    let score = 0;
     questions.forEach((q) => {
       const idx = answers[q.id];
       if (idx === undefined) return;
       const opt = q.options[idx];
-      if (!opt) return;
-      (Object.entries(opt.scores) as [Technique, number][]).forEach(([k, v]) => {
-        scores[k] += v;
-      });
+      if (opt) score += opt.score;
     });
-    const best = (Object.entries(scores) as [Technique, number][]).sort((a, b) => b[1] - a[1])[0];
-    return best && best[1] > 0 ? best[0] : "Valoración personalizada";
+    if (score >= 5) return "Encaja";
+    if (score >= 2) return "Dudoso";
+    return "Requiere valoración";
   })();
 
   const reset = () => {
@@ -92,10 +89,10 @@ export function TechniqueQuiz() {
       <div className="mx-auto max-w-4xl px-5 md:px-8">
         <div className="reveal text-center">
           <p className="section-kicker">Orientación</p>
-          <h2 className="section-title mt-4">¿Qué técnica es mejor para ti?</h2>
+          <h2 className="section-title mt-4">¿Encaja el microblading en tu caso?</h2>
           <p className="mx-auto mt-5 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground">
-            Responde a cuatro preguntas rápidas y te damos una orientación inicial sobre la técnica que podría encajar
-            contigo.
+            Cuatro preguntas para una primera orientación. La decisión se toma en la
+            valoración, mirando tu piel y tu ceja.
           </p>
         </div>
 
@@ -157,9 +154,9 @@ export function TechniqueQuiz() {
           ) : (
             <div className="text-center">
               <p className="section-kicker">Orientación inicial</p>
-              <h3 className="section-title mt-4">{recommendation}</h3>
+              <h3 className="section-title mt-4">{verdict}</h3>
               <p className="mx-auto mt-5 max-w-md text-[0.9rem] leading-relaxed text-muted-foreground">
-                {explanations[recommendation]}
+                {explanations[verdict]}
               </p>
               <p className="mx-auto mt-6 max-w-md text-[0.78rem] italic text-muted-foreground">
                 «Esta orientación no sustituye una valoración profesional.»

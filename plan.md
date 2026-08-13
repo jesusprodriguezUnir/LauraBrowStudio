@@ -7,7 +7,7 @@
 
 - **Reservas:** Solo WhatsApp + formulario (sin agenda pública).
 - **Datos reales:** Pendientes. Se usarán placeholders claramente marcados `[Pendiente — sustituir]` y `.env.example` para que la semana siguiente se sustituyan sin tocar código.
-- **Catálogo:** Solo microblading. Se profundiza en sus 3 variantes reales (pelo a pelo, shading/powder, combo).
+- **Catálogo:** Solo microblading pelo a pelo. Nada de shading ni técnica mixta.
 - **Idioma:** Solo español.
 
 ---
@@ -26,16 +26,16 @@
 
 - `src/lib/site-config.ts` con datos inventados marcados + lectura de `import.meta.env` (con fallback).
 - Reactivar `waLink()`: todos los CTAs abren wa.me con mensaje pre-rellenado.
-- Formulario de reserva (react-hook-form + zod, ya en deps): nombre, email, teléfono, técnica (3 variantes), 3 fechas preferidas, mensaje, check +18 y check contraindicaciones.
+- Formulario de reserva (react-hook-form + zod, ya en deps): nombre, email, teléfono, fecha preferida, mensaje, check +18 y check contraindicaciones.
 - Envío sin backend: Formspree (o Web3Forms / Netlify Forms) → email al negocio.
 - Cloudflare Turnstile gratis + sin cookies.
 - Toasts con `sonner` para feedback.
 
 ## Fase 2 — Microblading profundo (~4 h)
 
-- Refactor de `Services` (hoy describe el proceso): grid de las 3 variantes técnicas (pelo a pelo, shading/powder, combo) con imagen, duración sesión, duración efecto, ideal para, contraindicaciones, precio "desde XX€ / consultar".
+- Refactor de `Services` (hoy describe el proceso): ficha única de microblading pelo a pelo con imagen, duración sesión, duración efecto, ideal para, contraindicaciones, precio "desde XX€ / consultar".
 - Sección "Proceso" separada (valoración → sesión → retoque 4-8 semanas) incorporando `Process` o eliminando duplicidad.
-- Montar `TechniqueQuiz` (ya escrito): 4 preguntas → recomienda variante + CTA wa.me con `waMessagesQuiz()`.
+- Montar `TechniqueQuiz` (ya escrito): 4 preguntas → orienta sobre si el microblading encaja + CTA wa.me con `waMessagesQuiz()`.
 - Montar `HealedResults` (fresh vs healed 30 días).
 - Montar `Philosophy` (higiene/seguridad: agujas desechables, pigmentos veganos, etc.).
 

@@ -53,7 +53,7 @@ export function SiteHeader() {
               {site.name}
             </span>
             <span className="mt-0.5 block truncate text-[0.6rem] uppercase tracking-[0.22em] text-muted-foreground">
-              Cejas · Micropigmentación · {site.city}
+              Microblading · {site.city}
             </span>
           </span>
         </a>

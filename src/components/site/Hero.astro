@@ -15,17 +15,17 @@ const stats = [
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--surface-muted),transparent_60%)] opacity-70"></div>
   <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-[1.05fr_0.95fr] md:px-8">
     <div class="reveal max-w-3xl">
-      <h1 class="display-xl text-foreground">
+      <p class="section-kicker">Microblading · {site.city}</p>
+      <h1 class="display-xl mt-4 text-foreground">
         Cejas que parecen <strong>tuyas</strong>
       </h1>
       <p class="mt-6 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground">
-        Microblading pelo a pelo en {site.city}, en un estudio
-        <strong class="font-semibold text-foreground">especializado solo en cejas</strong>.
-        Diseño medido sobre tus facciones y aprobado contigo antes de empezar.
+        Microblading pelo a pelo en {site.city}. Trabajo sola, con cita previa.
+        Diseño la ceja sobre tu rostro y no pigmento hasta que la apruebas.
       </p>
       <div class="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
         <WhatsappCta message={waMessages.general} size="lg">
-          Reservar valoración
+          Pedir valoración
         </WhatsappCta>
         <a href="/resultados" class="btn btn-lg btn-ghost">Ver resultados</a>
       </div>
@@ -43,7 +43,7 @@ const stats = [
       <div class="image-frame aspect-[4/5]">
         <Image
           src={browHero}
-          alt="Detalle de una ceja con diseño de microblading pelo a pelo realizado en Palencia"
+          alt="Detalle de una ceja con microblading pelo a pelo. Fotografía provisional, a sustituir por un trabajo del estudio."
           widths={[480, 720, 960]}
           sizes="(min-width: 768px) 40vw, 92vw"
           loading="eager"

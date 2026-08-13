@@ -10,7 +10,6 @@ const schema = z.object({
   name: z.string().min(2, "Escribe tu nombre"),
   email: z.string().email("El email no es válido").optional().or(z.literal("")),
   phone: z.string().min(9, "Introduce un teléfono válido"),
-  technique: z.enum(["Microblading pelo a pelo", "Microshading / Powder", "Técnica mixta", "Aún no lo sé"]),
   date: z.string().min(1, "Indica una fecha preferida"),
   slot: z.enum(["Mañana", "Tarde", "Cualquiera"]),
   message: z.string().max(500).optional().or(z.literal("")),
@@ -48,9 +47,8 @@ export function BookingForm() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues: { slot: "Cualquiera", technique: "Aún no lo sé" } });
+  } = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues: { slot: "Cualquiera" } });
 
-  const technique = watch("technique");
   const showCaptcha = Boolean(siteKey);
 
   useEffect(() => {
@@ -101,7 +99,7 @@ export function BookingForm() {
       } catch {
         setStatus("idle");
         toast.error("No se ha podido enviar el formulario.", {
-          description: "Por favor, escríbenos directamente por WhatsApp para reservar.",
+          description: "Escríbeme por WhatsApp y lo vemos por ahí.",
         });
         return;
       }
@@ -109,10 +107,9 @@ export function BookingForm() {
 
     // Sin endpoint configurado: abrimos WhatsApp con la solicitud preescrita.
     const lines = [
-      `Hola ${site.name}, quiero reservar cita.`,
+      `Hola, quiero pedir una valoración de microblading.`,
       `Nombre: ${values.name}`,
       `Teléfono: ${values.phone}${values.email ? ` · Email: ${values.email}` : ""}`,
-      `Técnica: ${values.technique}`,
       `Fecha preferida: ${values.date} (${values.slot})`,
       values.message ? `Mensaje: ${values.message}` : "",
       `Mayor de 18 años: sí`,
@@ -131,8 +128,8 @@ export function BookingForm() {
         <h3 className="mt-4 font-display text-2xl tracking-tight">Solicitud enviada</h3>
         <p className="mx-auto mt-3 max-w-sm text-[0.88rem] leading-relaxed text-muted-foreground">
           {sentVia === "whatsapp"
-            ? "Hemos abierto WhatsApp con tu solicitud preparada. Envíala y te confirmamos la cita en cuanto podamos."
-            : "Hemos recibido tus datos y te confirmamos la cita en cuanto podamos."}
+            ? "He abierto WhatsApp con tu solicitud preparada. Envíala y te respondo en cuanto pueda."
+            : "He recibido tus datos y te confirmo la cita en cuanto pueda."}
         </p>
         <button
           type="button"
@@ -149,10 +146,10 @@ export function BookingForm() {
     <form onSubmit={onSubmit} className="rounded-sm border border-border bg-background p-6 md:p-8" noValidate>
       <div className="flex items-center gap-2">
         <MessageCircle className="h-4 w-4 text-primary" aria-hidden="true" />
-        <h3 className="text-[0.8rem] font-semibold uppercase tracking-[0.14em]">Solicita tu reserva</h3>
+        <h3 className="text-[0.8rem] font-semibold uppercase tracking-[0.14em]">Pedir valoración</h3>
       </div>
       <p className="mt-2 text-[0.8rem] leading-relaxed text-muted-foreground">
-        Rellena estos datos y te confirmamos fecha. También puedes reservar directamente por WhatsApp.
+        Déjame tus datos y te confirmo fecha. También puedes escribirme por WhatsApp.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -179,23 +176,6 @@ export function BookingForm() {
       </div>
 
       <fieldset className="mt-5">
-        <legend className={labelBase}>Técnica de interés</legend>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {(["Microblading pelo a pelo", "Microshading / Powder", "Técnica mixta", "Aún no lo sé"] as const).map((t) => (
-            <label
-              key={t}
-              className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2.5 text-[0.78rem] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring ${
-                technique === t ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"
-              }`}
-            >
-              <input type="radio" value={t} className="sr-only" {...register("technique")} />
-              {t}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
-      <fieldset className="mt-5">
         <legend className={labelBase}>Franja horaria</legend>
         <div className="flex flex-wrap gap-2">
           {(["Mañana", "Tarde", "Cualquiera"] as const).map((slot) => (
@@ -213,7 +193,7 @@ export function BookingForm() {
       </fieldset>
 
       <div className="mt-5">
-        <label htmlFor="rf-message" className={labelBase}>Cuéntanos brevemente qué buscas (opcional)</label>
+        <label htmlFor="rf-message" className={labelBase}>Cuéntame brevemente qué buscas (opcional)</label>
         <textarea id="rf-message" rows={3} maxLength={500} placeholder="Ej.: cejas muy despobladas, piel grasa…" className={inputBase} {...register("message")} />
       </div>
 
@@ -254,10 +234,10 @@ export function BookingForm() {
         disabled={status === "sending"}
         className="btn btn-solid btn-lg mt-6 w-full disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {status === "sending" ? "Enviando…" : "Solicitar cita"}
+        {status === "sending" ? "Enviando…" : "Enviar solicitud"}
       </button>
       <p className="mt-3 text-center text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground">
-        Respuesta en menos de 24 h · sin compromiso
+        Te respondo personalmente · cita previa
       </p>
     </form>
   );

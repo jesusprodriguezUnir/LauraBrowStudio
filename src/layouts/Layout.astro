@@ -64,19 +64,11 @@ const beautySalonSchema = {
   sameAs: site.instagram.startsWith("[") ? undefined : `https://www.instagram.com/${site.instagram}`,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Microblading y técnicas de cejas",
+    name: "Microblading de cejas",
     itemListElement: [
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Microblading pelo a pelo", description: "Pigmentación manual trazo a trazo para un acabado natural." },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Microshading / Powder brows", description: "Sombreado para aportar densidad y un acabado más definido, ideal en piel grasa." },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Técnica mixta (pelo a pelo + sombreado)", description: "Combina definición y densidad para un resultado natural." },
+        itemOffered: { "@type": "Service", name: "Microblading pelo a pelo", description: "Microblading de cejas en Palencia: pigmentación manual trazo a trazo, diseñada sobre el rostro." },
       },
     ],
   },

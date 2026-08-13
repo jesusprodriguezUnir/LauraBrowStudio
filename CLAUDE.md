@@ -50,7 +50,7 @@ Alias de import: `@/*` → `./src/*`.
 
 ## Contenido y copy
 
-- Español de España. Trato de «tú» al cliente y «nosotros» para el estudio; Laura habla en primera persona solo dentro de guillemets `« »`.
+- Español de España. Trato de «tú» al cliente y de «yo» (primera persona singular) para Laura en todo el copy. No se usa el plural «nosotros/nuestro»: solo hay una profesional. Los guillemets `« »` se reservan para citas y registro directo de Laura. Solo microblading pelo a pelo: no se mencionan microshading/powder ni técnica mixta en ningún punto del sitio.
 - Tono honesto y anti-hype: se cubre a propósito («puede encajar si…», «molesto pero tolerable», «tratamiento de larga duración, no permanente»). Sin superlativos, sin urgencia, sin descuentos, sin signos de exclamación.
 - **Nunca inventes precios, reseñas, credenciales ni datos de contacto.** Lo desconocido se escribe como placeholder visible (`[FORMACIÓN PENDIENTE]`) y se marca con `placeholder-tag`. Las cifras siempre van cualificadas («de 12 a 18 meses de media, según piel y cuidados»).
 - Separador `·` en líneas de metadatos, rangos con guion corto («Días 5-10»), `…` para frases que quedan abiertas.

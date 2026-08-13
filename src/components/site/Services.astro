@@ -1,98 +1,57 @@
 ---
 import { Image } from "astro:assets";
 import result1 from "../../assets/case-result-1.jpg";
-import result2 from "../../assets/case-result-2.jpg";
-import brow from "../../assets/brow-result.jpg";
 import { waMessages } from "../../lib/site-config";
 import WhatsappCta from "./WhatsappCta.astro";
 
-const techniques = [
-  {
-    id: "pelo-a-pelo",
-    name: "Microblading pelo a pelo",
-    image: result1,
-    duration: "2 h – 2 h 30",
-    effect: "12 – 18 meses",
-    ideal: "Piel normal o seca, con carencias puntuales",
-    description:
-      "Trazos manuales finísimos que imitan el vello uno a uno. El acabado más natural de todos: se percibe como tu propia ceja, solo que siempre definida.",
-  },
-  {
-    id: "microshading",
-    name: "Microshading · Powder brows",
-    image: result2,
-    duration: "2 h – 2 h 30",
-    effect: "18 – 24 meses",
-    ideal: "Piel grasa o madura, y acabados más marcados",
-    description:
-      "Sombreado suave que aporta densidad y un acabado tipo «polvo». Al no depender de trazos finos, dura más y se adapta mejor a pieles grasas.",
-  },
-  {
-    id: "mixta",
-    name: "Técnica mixta",
-    image: brow,
-    duration: "2 h – 3 h",
-    effect: "12 – 18 meses",
-    ideal: "Cejas muy despobladas o muy asimétricas",
-    description:
-      "Pelo a pelo en el arco y sombreado en el cuerpo: ganas densidad donde hace falta sin perder el trazo natural en el principio y la cola.",
-  },
+const facts = [
+  ["Sesión", "2 h – 2 h 30"],
+  ["Efecto", "12 – 18 meses"],
+  ["Plan", "Primera sesión + retoque"],
 ];
 ---
 
 <section id="servicios" class="border-t border-border bg-secondary/40 py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-5 md:px-8">
-    <div class="reveal max-w-2xl">
-      <p class="section-kicker">Servicios</p>
-      <h2 class="section-title mt-4">Una técnica para cada ceja</h2>
-      <p class="mt-5 text-[0.95rem] leading-relaxed text-muted-foreground">
-        El microblading no es un único resultado: depende de tu piel, tu vello y lo que quieras. Estas son
-        las tres técnicas que trabajamos, siempre tras una valoración previa.
-      </p>
-    </div>
+    <div class="grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
+      <div class="reveal">
+        <p class="section-kicker">El tratamiento</p>
+        <h2 class="section-title mt-4">Microblading pelo a pelo</h2>
+        <p class="mt-6 text-[0.95rem] leading-relaxed text-muted-foreground">
+          Con una herramienta de microcuchillas deposito pigmento en trazos finos, uno a uno,
+          en la capa más superficial de la piel. El objetivo es densificar y dar forma
+          siguiendo tu propio vello, no dibujar una ceja encima.
+        </p>
+        <p class="mt-4 text-[0.95rem] leading-relaxed text-muted-foreground">
+          No es un tatuaje: el pigmento no llega a la dermis profunda. Dura de media de 12 a
+          18 meses, según piel, cuidados y sol, y se va aclarando poco a poco.
+        </p>
+        <dl class="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-6">
+          {facts.map(([label, value]) => (
+            <div>
+              <dt class="text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</dt>
+              <dd class="mt-1.5 text-[0.88rem] leading-snug">{value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <WhatsappCta message={waMessages.general}>Pedir valoración</WhatsappCta>
+          <a href="/microblading" class="btn btn-ghost">Cómo es el tratamiento</a>
+        </div>
+      </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-3">
-      {techniques.map((t) => (
-        <article id={t.id} class="reveal flex flex-col rounded-sm border border-border bg-card p-5 transition-colors duration-300 hover:border-foreground/25 md:p-6">
-          <div class="image-frame aspect-[16/11]">
-            <Image
-              src={t.image}
-              alt={`${t.name} — micropigmentación de cejas en Palencia`}
-              widths={[420, 640]}
-              sizes="(min-width: 768px) 29vw, 92vw"
-              loading="lazy"
-              class="h-full w-full object-cover"
-            />
-          </div>
-          <div class="mt-6 flex flex-wrap gap-1.5">
-            <span class="rounded-full bg-primary/10 px-3 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-primary">
-              Sesión {t.duration}
-            </span>
-            <span class="rounded-full border border-border px-3 py-1 text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground">
-              Efecto {t.effect}
-            </span>
-          </div>
-          <h3 class="mt-4 font-display text-2xl tracking-tight">{t.name}</h3>
-          <p class="mt-2 text-[0.85rem] leading-relaxed text-muted-foreground">
-            <span class="text-[0.6rem] uppercase tracking-[0.16em]">Ideal para</span><br />{t.ideal}
-          </p>
-          <p class="mt-3 text-[0.88rem] leading-relaxed text-muted-foreground">{t.description}</p>
-          <p class="mt-4 border-t border-border pt-4 text-[0.8rem] text-muted-foreground">
-            Presupuesto tras valoración · retoque incluido
-          </p>
-          <div class="mt-auto pt-6">
-            <WhatsappCta message={waMessages.service(t.name)} size="sm" variant="outline" class="w-full">
-              Consultar esta técnica
-            </WhatsappCta>
-          </div>
-        </article>
-      ))}
+      <div class="reveal">
+        <div class="image-frame aspect-[4/5]">
+          <Image
+            src={result1}
+            alt="Resultado de microblading pelo a pelo. Fotografía provisional, a sustituir por un trabajo del estudio."
+            widths={[420, 640, 840]}
+            sizes="(min-width: 768px) 40vw, 92vw"
+            loading="lazy"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
     </div>
-
-    <p class="reveal mt-10 max-w-2xl text-[0.85rem] leading-relaxed text-muted-foreground">
-      Cada caso se valora en persona antes de fijar precio y técnica. Puedes empezar por el
-      <a href="/microblading#test" class="underline decoration-border underline-offset-4 hover:text-foreground transition-colors duration-300"> test de orientación</a>
-      o escribirnos directamente con una foto.
-    </p>
   </div>
 </section>

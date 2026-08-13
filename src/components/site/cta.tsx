@@ -20,7 +20,7 @@ const sizes = { sm: "btn-sm", default: "", lg: "btn-lg" } as const;
 
 export function WhatsappCta({
   message,
-  children = "Reservar valoración",
+  children = "Pedir valoración",
   variant = "solid",
   size = "default",
   className,

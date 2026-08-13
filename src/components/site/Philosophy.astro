@@ -3,27 +3,27 @@ import { Image } from "astro:assets";
 import studioDetail from "../../assets/studio-detail.jpg";
 
 const factors = [
-  ["Facciones", "Proporciones y rasgos de tu rostro."],
-  ["Forma del rostro", "Cómo la ceja acompaña a tu mirada."],
-  ["Cejas actuales", "Punto de partida real, sin atajos."],
-  ["Densidad del pelo", "Zonas con vello y zonas vacías."],
-  ["Tipo de piel", "Determina cómo evoluciona el pigmento."],
-  ["Resultado deseado", "Lo natural no significa lo mismo para todas."],
+  ["Facciones", "Cómo cae la ceja respecto a ojos, nariz y frente."],
+  ["Forma del rostro", "La línea tiene que acompañar tu cara, no una plantilla."],
+  ["Cejas actuales", "Parto de lo que tienes, no de una ceja inventada."],
+  ["Densidad del pelo", "Dónde hay vello que seguir y dónde hay que dibujar."],
+  ["Tipo de piel", "En piel grasa el trazo se mantiene peor. Se valora en la cita."],
+  ["Lo que buscas", "Natural no significa lo mismo para todas."],
 ];
 ---
 
 <section id="filosofia" class="border-t border-border py-20 md:py-28">
   <div class="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-[0.95fr_1.05fr] md:gap-16 md:px-8">
     <div class="reveal">
-      <p class="section-kicker">Filosofía</p>
-      <h2 class="section-title mt-4">No todas las cejas necesitan la misma técnica.</h2>
+      <p class="section-kicker">Cómo decido</p>
+      <h2 class="section-title mt-4">No todas las cejas encajan en el microblading.</h2>
       <p class="mt-6 max-w-md font-display text-xl italic leading-snug text-muted-foreground">
-        «El objetivo no es crear unas cejas perfectas según un patrón. Es crear unas cejas que encajen contigo.»
+        «No busco una ceja de revista. Busco la que encaja con tu cara y con tu pelo.»
       </p>
       <div class="image-frame mt-9 aspect-[4/3]">
         <Image
           src={studioDetail}
-          alt="Detalle del espacio de trabajo del estudio de cejas en Palencia"
+          alt="Espacio de trabajo del estudio. Fotografía provisional, a sustituir por el estudio real."
           widths={[420, 640, 900]}
           sizes="(min-width: 768px) 40vw, 92vw"
           loading="lazy"

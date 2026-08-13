@@ -12,7 +12,7 @@ import WhatsappBar from "../components/site/WhatsappBar.astro";
 
 const title = `Resultados de microblading | ${site.name}`;
 const description =
-  "Fotos de antes y después de microblading en Palencia, con el resultado ya cicatrizado. Mira cómo evoluciona el pigmento en los meses posteriores.";
+  "Antes, después y resultado cicatrizado de microblading en Palencia. El día de la sesión el pigmento se ve más intenso; el resultado real llega semanas después.";
 ---
 
 <Layout title={title} description={description} path="/resultados">
@@ -22,7 +22,7 @@ const description =
       <PageHeader
         kicker="Resultados"
         title="Antes, después y, sobre todo, cicatrizado"
-        intro="Mostramos las dos fases del tratamiento. El día de la sesión el pigmento se ve más intenso; el resultado real aparece semanas más tarde."
+        intro="El día de la sesión el pigmento se ve más intenso. El resultado real aparece cuando la piel ha cicatrizado. Las fotos de esta página son provisionales hasta que Laura envíe las suyas."
       />
       <BeforeAfter client:visible />
       <HealedResults />

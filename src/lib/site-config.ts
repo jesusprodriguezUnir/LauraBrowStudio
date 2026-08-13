@@ -7,7 +7,7 @@ const BIZ_NAME = "LauraBrowStudio";
  */
 export const site = {
   name: BIZ_NAME,
-  claim: "Microblading y micropigmentación de cejas en Palencia",
+  claim: "Microblading pelo a pelo en Palencia",
   city: "Palencia",
   region: "Castilla y León",
   country: "España",
@@ -42,14 +42,13 @@ export const instagramUrl = site.instagram.startsWith("[")
   ? "#"
   : `https://www.instagram.com/${site.instagram}`;
 
-/** Enlace a WhatsApp. Mientras no haya número real, abre el bloque de contacto. */
+/** Enlace a WhatsApp con el mensaje preescrito. */
 export function waLink(message: string): string {
-  if (!site.whatsappNumber) return "#contacto";
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 export const waMessages = {
-  general: "Hola, me gustaría solicitar una valoración de mis cejas.",
-  quiz: "Hola, he hecho el test de la web y me gustaría consultar mi caso.",
-  service: (name: string) => `Hola, me interesa el servicio de ${name}. ¿Podemos valorar mi caso?`,
+  general: "Hola, me gustaría pedir una valoración de microblading.",
+  quiz: "Hola, he hecho el test de la web y me gustaría consultar si el microblading encaja en mi caso.",
+  service: (name: string) => `Hola, me interesa el ${name}. ¿Podemos valorar mi caso?`,
 };

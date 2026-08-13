@@ -5,10 +5,10 @@ import { site, waMessages } from "../../lib/site-config";
 import WhatsappCta from "./WhatsappCta.astro";
 
 const details = [
-  ["Formación", "Técnico Superior en Estética Integral"],
-  ["Certificaciones", "Máster en Microblading y Micropigmentación Avanzada"],
-  ["Estudio", site.address],
-  ["Zona de trabajo", `${site.city}, ${site.region}`],
+  { k: "Formación", v: "[FORMACIÓN PENDIENTE]", pending: true },
+  { k: "Estudio", v: site.address, pending: false },
+  { k: "Zona", v: `${site.city}, ${site.region}`, pending: false },
+  { k: "Cita", v: "Una clienta cada vez", pending: false },
 ];
 ---
 
@@ -18,7 +18,7 @@ const details = [
       <div class="image-frame aspect-[4/5]">
         <Image
           src={portrait}
-          alt={`${site.name}, especialista en diseño de cejas y micropigmentación en ${site.city}`}
+          alt={`Retrato de ${site.name}. Fotografía provisional, a sustituir por una foto real.`}
           widths={[480, 720, 960]}
           sizes="(min-width: 768px) 40vw, 92vw"
           loading="lazy"
@@ -28,17 +28,22 @@ const details = [
     </div>
 
     <div class="reveal">
-      <p class="section-kicker">Sobre la profesional</p>
-      <h2 class="section-title mt-4">Detrás de cada ceja hay una persona.</h2>
-      <p class="mt-6 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground">
-        «Soy {site.name}, especialista en diseño de cejas y micropigmentación. Mi objetivo es ayudarte a conseguir
-        unas cejas que encajen contigo y conserven un aspecto natural.»
+      <p class="section-kicker">Sobre mí</p>
+      <h2 class="section-title mt-4">Trabajo sola, y solo hago cejas.</h2>
+      <p class="mt-6 max-w-lg font-display text-xl italic leading-snug text-muted-foreground">
+        «Mi trabajo es que el resultado encaje contigo, no que encaje en una foto.»
+      </p>
+      <p class="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground">
+        Soy Laura. Hago microblading en {site.city}, con cita previa y de una en una.
+        Te atiendo yo en todo el proceso: la valoración, el diseño, la sesión y el seguimiento.
       </p>
       <dl class="mt-9 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
-        {details.map(([k, v]) => (
+        {details.map(({ k, v, pending }) => (
           <div class="bg-background p-5">
             <dt class="text-[0.6rem] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
-            <dd class="mt-1.5 text-[0.85rem] leading-snug">{v}</dd>
+            <dd class="mt-1.5 text-[0.85rem] leading-snug">
+              {pending ? <span class="placeholder-tag">{v}</span> : v}
+            </dd>
           </div>
         ))}
       </dl>
