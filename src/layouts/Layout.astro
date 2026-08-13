@@ -34,7 +34,7 @@ interface Props {
 const { title, description, path = "/", image, includeFaq = false, noindex = false } = Astro.props;
 
 const canonical = new URL(path, site.url).toString();
-const ogImage = image ? new URL(image, site.url).toString() : new URL("/icon-512.png", site.url).toString();
+const ogImage = image ? new URL(image, site.url).toString() : new URL("/og-image.jpg", site.url).toString();
 
 const addressSchema = site.address.startsWith("[") ? undefined : {
   "@type": "PostalAddress",
@@ -96,6 +96,9 @@ const breadcrumbSchema = path !== "/"
   : undefined;
 
 import WhatsappFloating from "../components/site/WhatsappFloating.astro";
+import { SiteHeader } from "../components/site/site-header";
+import SiteFooter from "../components/site/SiteFooter.astro";
+import WhatsappBar from "../components/site/WhatsappBar.astro";
 ---
 
 <!doctype html>
@@ -135,7 +138,7 @@ import WhatsappFloating from "../components/site/WhatsappFloating.astro";
       (function () {
         try {
           var t = localStorage.getItem("lbs-theme");
-          var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var dark = t === "dark";
           if (dark) document.documentElement.classList.add("dark");
         } catch (e) {}
       })();
@@ -151,7 +154,12 @@ import WhatsappFloating from "../components/site/WhatsappFloating.astro";
       Saltar al contenido
     </a>
 
-    <slot />
+    <div class="min-h-screen flex flex-col" id="contenido">
+      <SiteHeader client:load />
+      <slot />
+      <SiteFooter />
+      <WhatsappBar />
+    </div>
 
     <Toaster client:load position="bottom-center" richColors closeButton />
 

@@ -1,12 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site } from "../lib/site-config";
-import { SiteHeader } from "../components/site/site-header";
 import PageHeader from "../components/site/PageHeader.astro";
 import FaqSection from "../components/site/FaqSection.astro";
 import FinalCta from "../components/site/FinalCta.astro";
-import SiteFooter from "../components/site/SiteFooter.astro";
-import WhatsappBar from "../components/site/WhatsappBar.astro";
 
 const title = `Contacto | ${site.name}`;
 const description =
@@ -14,18 +11,13 @@ const description =
 ---
 
 <Layout title={title} description={description} path="/contacto" includeFaq>
-  <div class="min-h-screen" id="contenido">
-    <SiteHeader client:load />
-    <main>
-      <PageHeader
-        kicker="Contacto"
-        title="Pide tu valoración"
-        intro="Cuéntame qué te gustaría cambiar y te oriento sobre si el microblading encaja. Si puedes, adjunta una foto de frente con buena luz."
-      />
-      <FinalCta />
-      <FaqSection />
-    </main>
-    <SiteFooter />
-    <WhatsappBar />
-  </div>
+  <main>
+    <PageHeader
+      kicker="Contacto"
+      title="Pide tu valoración"
+      intro="Cuéntame qué te gustaría cambiar y te oriento sobre si el microblading encaja. Si puedes, adjunta una foto de frente con buena luz."
+    />
+    <FinalCta />
+    <FaqSection />
+  </main>
 </Layout>

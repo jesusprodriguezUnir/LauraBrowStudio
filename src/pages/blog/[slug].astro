@@ -18,7 +18,7 @@ const title = `${post.data.title} | ${site.name}`;
 const description = post.data.description;
 ---
 
-<Layout title={title} description={description} path={`/blog/${post.id}`} image="/icon-512.png">
+<Layout title={title} description={description} path={`/blog/${post.id}`}>
   <main>
     <BlogPost title={post.data.title} description={post.data.description} date={post.data.pubDate}>
       <Content />
